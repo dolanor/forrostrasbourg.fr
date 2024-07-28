@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.LanguageCode }}">
+
+	<head>
+		{{ $title_plain := .Title | markdownify | plainify }}
+		{{ $place :=  printf "%s, %s" .Params.Place .Params.City  }}
+		<title>{{ $title_plain }} - {{ $place }}  le {{ time.Format "02/01/2006" .Params.StartDate }} - {{ .Site.Title }}</title>
+
+		{{ partial "headers.html" . }}
+		{{ partial "custom_headers.html" . }}
+
+
+		<meta property="og:image" content="/evenements/{{ .File.BaseFileName }}.jpeg">
+		<meta name="twitter:image" content="/evenements/{{ .File.BaseFileName }}.jpeg">
+		<meta itemprop="image" content="/evenements/{{ .File.BaseFileName }}.jpeg">
+
+		<meta name="keywords" content="événements, evenements, events, event">
+	</head>
+
+	<body>
+		<div id="all">
+			{{ partial "top.html" . }}
+
+			{{ partial "nav.html" . }}
+
+			{{ partial "breadcrumbs.html" . }}
+
+			<div id="content">
+			{{ if isset .Params "id" }}
+
+				{{ partial .Params.id . }}
+
+			{{ else }}
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12">
+							<article itemscope itemtype="https://schema.org/DanceEvent">
+								<img src="/evenements/{{ .File.BaseFileName }}.jpeg" alt="bannière" style="max-width: 100%; max-height: 300px;">
+								<h3 itemprop="name">{{ .Title }}</h3>
+								<div><b>Date :</b> <time datetime="{{ .Params.StartDate }}" itemprop="startDate" content="{{ .Params.StartDate }}">{{ time.Format "02/01/2006" .Params.StartDate }}</time></div>
+								<div><b>Horaire :</b> <time datetime="{{ .Params.StartDate }}"> {{ time.Format "15:04" .Params.StartDate }}
+								{{- with .Params.EndDate}}
+									− <time datetime="{{ . }}" itemprop="endDate" content="{{ . }}">{{ time.Format "15:04" . }}</time>
+								{{ end -}}
+								</div>
+
+								<div itemprop="location" itemscope itemtype="https://schema.org/Place">
+									<b>Lieu :</b>
+									<a href="https://maps.apple.com/?q={{ urlize $place }}">
+										<span itemprop="name">{{ .Params.Place }}</span>, <span itemprop="address" itemscope itemtype="https://schema.org/PostalAddress"><span itemprop="addressLocality">{{ .Params.City }}</span></span>
+									</a>
+								</div>
+								{{ with .Params.Price }}
+								<div itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+									<meta itemprop="priceCurrency" content="EUR">
+									<b>Prix :</b> <span itemprop="price" content="{{ . }}">{{ . }}</span></div>
+								{{ end }}
+								{{ range $socialMediaName, $socialMediaLink := .Params.Social_media }}
+								<div><a href="{{ $socialMediaLink }}">{{ $socialMediaName }}</a></div>
+								{{ end }}
+								<div itemprop="performer" itemscope itemtype="https://schema.org/Organization"><b>Groupe :</b> <span itemprop="name">{{ .Site.Title }}</span></div>
+								<br>
+								<div>
+									{{ .Content }}
+								</div>
+							</article>
+						</div>
+					</div>
+					<!-- /.row -->
+				</div>
+				<!-- /.container -->
+			{{ end }}
+			</div>
+		</div>
+		{{ partial "scripts.html" . }}
+	</body>
+</html>
