@@ -4,7 +4,7 @@ title: Forró Strasbourg
 
 TL;DR : [Notre groupe signal où on publie nos événements](https://signal.group/#CjQKIGXkFWEmgPkX3TmibvjdV-UgtDXZajRkwjWnF19AJxY0EhBYWmbHZt421KVe1ADWHxG_)
 
-![Des strasbourgeois dansant le forró](assets/forro-strasbourg-bateliers.jpeg)
+![Des strasbourgeois dansant le forró](/photos/forro-strasbourg-bateliers.jpeg)
 
 Forró Strasbourg a pour but de faire découvrir cette musique et cette danse du Brésil.
 
