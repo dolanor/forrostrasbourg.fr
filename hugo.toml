@@ -4,8 +4,6 @@ defaultContentLanguage = "fr"
 title = "Forró Strasbourg"
 theme = "hugo-universal-theme"
 
-disabled_logo = true
-logo_text = ""
 
 googleAnalytics = ""
 
@@ -14,6 +12,12 @@ googleAnalytics = ""
     author = "Forró Strasbourg"
     defaultKeywords = ["forró", "forro", "alsace", "strasbourg", "musique", "music", "danse", "dance", ]
     mainSections = ["evenements"]
+
+disabled_logo = false
+logo_text = "Forró Strasbourg"
+
+logo = "forrostrasbourg.logo.png"
+logo_small = "forrostrasbourg.logo.png"
 
 # Main menu
 [[menu.main]]
