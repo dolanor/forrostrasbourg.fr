@@ -27,12 +27,12 @@ logo_small = "forrostrasbourg.logo.png"
     weight     = 1
 
 [[menu.main]]
-    name       = "Événements"
-    url        = "/evenements"
+    name       = "Forró"
+    url        = "/forro"
     weight     = 2
 
 [[menu.main]]
-    name       = "Photos"
-    url        = "/photos"
+    name       = "Événements"
+    url        = "/evenements"
     weight     = 3
 
