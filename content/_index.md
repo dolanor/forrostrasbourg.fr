@@ -2,7 +2,9 @@
 title: Forró Strasbourg
 ---
 
-TL;DR : [Notre groupe signal où on publie nos événements](https://signal.group/#CjQKIGXkFWEmgPkX3TmibvjdV-UgtDXZajRkwjWnF19AJxY0EhBYWmbHZt421KVe1ADWHxG_)
+TL;DR : [Notre groupe signal où on publie nos événements](https://signal.group/#CjQKIGXkFWEmgPkX3TmibvjdV-UgtDXZajRkwjWnF19AJxY0EhBYWmbHZt421KVe1ADWHxG_)  
+[Les évènements](/evenements)  
+[Le Forró](/forro)  
 
 ![Des strasbourgeois dansant le forró](/photos/forro-strasbourg-bateliers.jpeg)
 
@@ -19,8 +21,11 @@ Le Forró se dansait tous les soirs de la semaine à Paris à l'époque dans dif
 
 Rencontrant beaucoup de danseurs sur Strasbourg ne connaissant pas cette danse, je souhaite la faire découvrir également au détour d'une promenade.
 
+J'ai partagé quelques de mes connaissances dans cette [rubrique Forró](/forro)
+
 # Comment nous trouver
 
+Nos évènements sont publié sur ce site : [évènements](/evenements)  
 On publie principalement les infos sur [Signal](https://signal.org) dans ce [groupe](https://signal.group/#CjQKIGXkFWEmgPkX3TmibvjdV-UgtDXZajRkwjWnF19AJxY0EhBYWmbHZt421KVe1ADWHxG_)
 
 Vous pouvez également me contacter (Tanguy) au [+336 51 08 06 36](tel:+33651080636)
