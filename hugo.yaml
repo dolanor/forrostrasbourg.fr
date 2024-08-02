@@ -7,6 +7,10 @@ theme: "hugo-universal-theme"
 
 googleAnalytics: ""
 
+outputs:
+  section: [ "html", "rss", "calendar" ]
+  page:    [ "html", "rss", "calendar" ]
+
 
 params:
   style: "green"

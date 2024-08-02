@@ -1,0 +1,20 @@
+BEGIN:VEVENT
+
+SUMMARY:{{ .Title }}
+{{ with .Date}}DTSTAMP:{{ dateFormat "20060102T150405Z" . }}{{ end }}
+DTSTART;TZID=Europe/Paris:{{ dateFormat "20060102T150405" .Params.startDate }}
+DTEND;TZID=Europe/Paris:{{ dateFormat "20060102T150405" .Params.endDate }}
+LOCATION:{{ .Params.place }}, {{ .Params.City }}
+URL:{{.Permalink}}
+STATUS:CONFIRMED
+
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER;RELATED=START:-PT2H
+END:VALARM
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER;RELATED=START:-P1D
+END:VALARM
+
+END:VEVENT
