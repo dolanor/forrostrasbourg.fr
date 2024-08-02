@@ -6,6 +6,10 @@
 		{{ partial "custom_headers.html" . }}
 		<meta name="keywords" content="événements, evenements, events, event">
 	 	<meta name="description" content="Liste des événements de Forró sur Strasbourg">
+		{{ range .AlternativeOutputFormats -}}
+		<link rel="{{ .Rel }}" type="{{ .MediaType.Type }}" href="{{ .Permalink | safeURL }}">
+		{{ end }}
+
 	</head>
 
 	<body>
