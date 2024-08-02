@@ -1,0 +1,37 @@
+baseURL: "https://forrostrasbourg.fr/"
+languageCode: "fr-fr"
+defaultContentLanguage: "fr"
+title: "Forró Strasbourg"
+theme: "hugo-universal-theme"
+
+
+googleAnalytics: ""
+
+
+params:
+  style: "green"
+  author: "Forró Strasbourg"
+  defaultKeywords: ["forró", "forro", "alsace", "strasbourg", "musique", "music", "danse", "dance", ]
+  mainSections: ["evenements"]
+
+  disabled_logo: false
+  logo_text: "Forró Strasbourg"
+  
+  logo: "forrostrasbourg.logo.png"
+  logo_small: "forrostrasbourg.logo.png"
+
+# Main menu
+main:
+  - name      : "Accueil"
+    identifier: "menu.home"
+    url       : "/"
+    weight    : 1
+
+  - name      : "Forró"
+    url       : "/forro"
+    weight    : 2
+
+  - name      : "Événements"
+    url       : "/evenements"
+    weight    : 3
+
