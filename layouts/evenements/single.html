@@ -15,6 +15,10 @@
 		<meta itemprop="image" content="/evenements/{{ .File.BaseFileName }}.jpeg">
 
 		<meta name="keywords" content="événements, evenements, events, event">
+
+		{{ range .AlternativeOutputFormats -}}
+		<link rel="{{ .Rel }}" type="{{ .MediaType.Type }}" href="{{ .Permalink | safeURL }}">
+		{{ end }}
 	</head>
 
 	<body>
