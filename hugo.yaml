@@ -25,17 +25,18 @@ params:
   logo_small: "forrostrasbourg.logo.png"
 
 # Main menu
-main:
-  - name      : "Accueil"
-    identifier: "menu.home"
-    url       : "/"
-    weight    : 1
+menu:
+  main:
+    - name      : "Accueil"
+      identifier: "menu.home"
+      url       : "/"
+      weight    : 1
 
-  - name      : "Forró"
-    url       : "/forro"
-    weight    : 2
+    - name      : "Forró"
+      url       : "/forro"
+      weight    : 2
 
-  - name      : "Événements"
-    url       : "/evenements"
-    weight    : 3
+    - name      : "Événements"
+      url       : "/evenements"
+      weight    : 3
 
