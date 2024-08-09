@@ -5,7 +5,7 @@ title: "Forró Strasbourg"
 theme: "hugo-universal-theme"
 
 
-googleAnalytics: ""
+googleAnalytics: "G-6W78PE1M44"
 
 outputs:
   section: [ "html", "rss", "calendar", "json" ]
