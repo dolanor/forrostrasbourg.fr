@@ -1,0 +1,5 @@
+[
+	{{ range sort .Pages "Params.StartDate" "desc" }}
+		{ startDate: {{ .Params.StartDate }}, title: {{ .Title }}, permalink: {{ .Permalink }} },
+	{{ end }}
+];
