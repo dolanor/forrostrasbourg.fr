@@ -9,46 +9,12 @@
 		{{ range .AlternativeOutputFormats -}}
 		<link rel="{{ .Rel }}" type="{{ .MediaType.Type }}" href="{{ .Permalink | safeURL }}">
 		{{ end }}
-		<script lang="javascript">
-			window.addEventListener("load",	() => {
-				const button = document.querySelector("#buttonID");
-
-				if (window.self !== window.top) {
-					button.textContent = "voir résultat";
-					button.addEventListener("click", () => {
-						window.open(location.href);
-					})
-				}
-
-				button.addEventListener("click", () => {
-					if (Notification?.permission === "granted") {
-						let i = 0;
-
-						const interval = setInterval( () => {
-							const n = new Notification(`coucou ${i}`, {
-								tag: "tropDeNotif",
-							});
-
-							if (i === 9) {
-								clearInterval(interval);
-							}
-
-							i++;
-							
-						}, 200);
-
-
-					} else {
-						alert("coucou");
-					}
-				});
-			});
+		<script lang="javascript" type="module" src="/js/notifications.js"></script>
 		</script>
 
 	</head>
 
 	<body>
-		<button id="buttonID">Envoyez une notification !</button>
 
 		<div id="all">
 			{{ partial "top.html" . }}
