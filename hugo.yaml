@@ -11,6 +11,11 @@ outputs:
   section: [ "html", "rss", "calendar", "json" ]
   page:    [ "html", "rss", "calendar" ]
 
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+
 
 params:
   style: "green"
