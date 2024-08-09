@@ -1,5 +1,5 @@
 [
 	{{ range sort .Pages "Params.StartDate" "desc" }}
-		{ "startDate": {{ .Params.StartDate }}, "title": {{ .Title }}, "permalink": {{ .Permalink }} },
+		{ "startDate": {{ .Params.StartDate | jsonify }}, "title": {{ .Title | jsonify }}, "permalink": {{ .Permalink | jsonify }} },
 	{{ end }}
 ];
