@@ -2,6 +2,8 @@
 <meta name="robots" content="all,follow">
 <meta name="googlebot" content="index,follow,snippet,archive">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+  {{ with .Param "facebook_site" }}<meta property="article:publisher" content="https://www.facebook.com/{{ . }}/">{{ end }}
+  {{ with .Param "facebook_author" }}<meta property="article:author" content="https://www.facebook.com/{{ . }}/">{{ end }}
 {{ $title_plain := .Title | markdownify | plainify }}
 {{ $place :=  printf "%s, %s" .Params.Place .Params.City  }}
 <title>{{ $title_plain }} - {{ $place }}  le {{ time.Format "02/01/2006" .Params.StartDate }} - {{ .Site.Title }}</title>
