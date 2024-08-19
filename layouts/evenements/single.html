@@ -2,12 +2,8 @@
 <html lang="{{ .Site.LanguageCode }}">
 
 	<head>
-		{{ $title_plain := .Title | markdownify | plainify }}
-		{{ $place :=  printf "%s, %s" .Params.Place .Params.City  }}
-		<title>{{ $title_plain }} - {{ $place }}  le {{ time.Format "02/01/2006" .Params.StartDate }} - {{ .Site.Title }}</title>
 
-		{{ partial "headers.html" . }}
-		{{ partial "custom_headers.html" . }}
+		{{ partial "event_headers.html" . }}
 
 
 		<meta property="og:image" content="/evenements/{{ .File.BaseFileName }}.jpeg">
@@ -49,6 +45,7 @@
 								{{ end -}}
 								</div>
 
+								{{ $place :=  printf "%s, %s" .Params.Place .Params.City  }}
 								<div itemprop="location" itemscope itemtype="https://schema.org/Place">
 									<b>Lieu :</b>
 									<a href="https://maps.apple.com/?q={{ urlize $place }}">
