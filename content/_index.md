@@ -6,7 +6,7 @@ TL;DR : [Notre groupe signal où on publie nos événements](https://signal.grou
 [Les évènements](/evenements)  
 [Le Forró](/forro)  
 
-![Des strasbourgeois dansant le forró](/photos/forro-strasbourg-bateliers.jpeg)
+<img alt="Les forrozeiros de Strasbourg au O'Kivu" src="evenements/240904.jpeg" width="100%">
 
 Forró Strasbourg a pour but de faire découvrir cette musique et cette danse du Brésil.
 
