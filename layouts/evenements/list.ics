@@ -2,16 +2,11 @@ BEGIN:VCALENDAR
 VERSION:2.0
 PRODID:-//forro-strasbourg//event calendar//EN
 CALSCALE:GREGORIAN
-
 X-WR-CALNAME:Forró Strasbourg
 X-APPLE-CALENDAR-COLOR:#e7ad74
 REFRESH-INTERVAL;VALUE=DURATION:PT4H
 X-PUBLISHED-TTL:PT4H
-
 {{range .Pages -}}
-
 {{ template "evenements/single.ics" . }}
-
 {{end -}}
-
 END:VCALENDAR
