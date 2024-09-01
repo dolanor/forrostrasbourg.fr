@@ -46,3 +46,6 @@ menu:
       url       : "/evenements"
       weight    : 3
 
+    - name      : "Ailleurs"
+      url       : "/ailleurs"
+      weight    : 4
