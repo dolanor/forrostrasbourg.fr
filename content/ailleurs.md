@@ -6,6 +6,8 @@ title: Ailleurs
 
 Une petite liste des différents groupes WhatsApp (<i class="fab fa-whatsapp" style="color: #25D366"></i>) ou Telegram (<i class="fab fa-telegram" style="color: #24A1DE"></i>) ou Signal (<i class="fab fa-signal-messenger" style="color: #3A76F0"></i>) de Forró dans le monde.
 
+Cette liste a été démarrée à l'initiative de Jerem du groupe WhatsApp de Paris. Merci à lui !
+
 Pour échanger vos billets de festival :
 <i class="fab fa-telegram" style="color: #24A1DE"></i> https://t.me/+iSVWYjFuGkIwMmQy
 
