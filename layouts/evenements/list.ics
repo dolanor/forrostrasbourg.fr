@@ -7,6 +7,6 @@ X-APPLE-CALENDAR-COLOR:#e7ad74
 REFRESH-INTERVAL;VALUE=DURATION:PT4H
 X-PUBLISHED-TTL:PT4H
 {{range .Pages -}}
-{{ template "evenements/event.ics" . }}
+{{ template "evenements/event.ics" . -}}
 {{end -}}
 END:VCALENDAR
