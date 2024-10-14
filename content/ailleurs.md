@@ -57,7 +57,7 @@ Pour échanger vos billets de festival :
 
 <i class="fab fa-whatsapp" style="color: #25D366"></i> https://chat.whatsapp.com/CtxxFOc1jeSKbu1M5NZ3r4
 
-🏴󠁧󠁢󠁳󠁣󠁴󠁿 Ecosse 
+## 🏴󠁧󠁢󠁳󠁣󠁴󠁿 Ecosse 
 
 ### Edinburgh 
 
