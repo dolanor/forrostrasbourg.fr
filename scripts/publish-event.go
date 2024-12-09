@@ -3,6 +3,7 @@ package main
 import (
     "bytes"
     "encoding/json"
+    "errors"
     "flag"
     "fmt"
     "gopkg.in/yaml.v3"
@@ -46,9 +47,6 @@ func runGitCheckChanges(dir, filePath string) (bool, error) {
     cmd.Dir = dir
     output, err := cmd.CombinedOutput()
 
-    // If err is nil, exit code == 0 → no changes
-    // If err is non-nil, could be exit code 1 or another error.
-    // We distinguish based on the exit error code.
     if err != nil {
         // Check if it's just exit code 1 (changes present) or a real error
         if exitErr, ok := err.(*exec.ExitError); ok {
@@ -128,7 +126,6 @@ func extractFrontMatter(filePath string) (FrontMatterData, error) {
         line = strings.TrimSpace(line)
         if line == "---" {
             if !inFrontMatter {
-                // starting front matter
                 inFrontMatter = true
                 continue
             } else {
@@ -257,6 +254,27 @@ func publishEventMarkdown(templatePath string, parsedDate time.Time, dateStr, la
     return outputPath, data, fmData, false, nil
 }
 
+// waitForEventPage checks the given URL periodically until it gets a 200 response or hits a timeout.
+func waitForEventPage(eventURL string, timeout, interval time.Duration) error {
+    deadline := time.Now().Add(timeout)
+
+    for time.Now().Before(deadline) {
+        resp, err := http.Get(eventURL)
+        if err == nil {
+            resp.Body.Close()
+            if resp.StatusCode == http.StatusOK {
+                // Page is live
+                return nil
+            }
+        }
+
+        // Page not live yet, wait before retrying
+        time.Sleep(interval)
+    }
+
+    return errors.New("timed out waiting for the event page to become available")
+}
+
 func publishEventOnFacebook(data EventData, fmData FrontMatterData, outputPath string, pageAccessToken string) error {
     pageID := "351984064669408" // Replace with your actual Facebook Page ID
 
@@ -267,8 +285,8 @@ func publishEventOnFacebook(data EventData, fmData FrontMatterData, outputPath s
 
     // Create a simple French message describing the event
     message := fmt.Sprintf(
-`le %s: %s
-%s, %s .
+        `le %s: %s
+        %s, %s .
 
 Plus d'informations :
 %s`,
@@ -278,6 +296,12 @@ Plus d'informations :
         data.LongDateCapitalized,
         eventURL,
     )
+
+    // Before publishing to Facebook, wait for the event page to become available
+    log.Printf("Waiting for event page to become available: %s", eventURL)
+    if err := waitForEventPage(eventURL, 5*time.Minute, 10*time.Second); err != nil {
+        return fmt.Errorf("event page did not become available in time: %v", err)
+    }
 
     url := fmt.Sprintf("https://graph.facebook.com/%s/feed", pageID)
     requestBody := map[string]string{
