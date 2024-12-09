@@ -29,14 +29,40 @@ type FrontMatterData struct {
     City  string `yaml:"city"`
 }
 
-func runGitCommand(dir string, args ...string) error {
+func runGitCommand(dir string, args ...string) (string, error) {
     cmd := exec.Command("git", args...)
     cmd.Dir = dir
     output, err := cmd.CombinedOutput()
     if err != nil {
-        return fmt.Errorf("failed to run git command '%v': %v\nOutput: %s", args, err, string(output))
+        return string(output), fmt.Errorf("failed to run git command '%v': %v\nOutput: %s", args, err, string(output))
     }
-    return nil
+    return string(output), nil
+}
+
+func runGitCheckChanges(dir, filePath string) (bool, error) {
+    // run: git diff --cached --exit-code filePath
+    // exit code 0 means no changes, exit code 1 means changes present
+    cmd := exec.Command("git", "diff", "--cached", "--exit-code", filePath)
+    cmd.Dir = dir
+    output, err := cmd.CombinedOutput()
+
+    // If err is nil, exit code == 0 → no changes
+    // If err is non-nil, could be exit code 1 or another error.
+    // We distinguish based on the exit error code.
+    if err != nil {
+        // Check if it's just exit code 1 (changes present) or a real error
+        if exitErr, ok := err.(*exec.ExitError); ok {
+            // Exit status 1 indicates differences
+            if exitErr.ExitCode() == 1 {
+                // Changes present
+                return true, nil
+            }
+        }
+        return false, fmt.Errorf("error running git diff: %v\nOutput: %s", err, string(output))
+    }
+
+    // If we get here, err == nil, exit code 0 → no changes
+    return false, nil
 }
 
 func getWeekdayName(d time.Time, lang string) string {
@@ -129,8 +155,8 @@ func extractFrontMatter(filePath string) (FrontMatterData, error) {
 
 // publishEventMarkdown creates the markdown file and handles git operations.
 // It logs every action and performs it only if dryRun is false.
-// It returns the outputPath, EventData, and FrontMatterData.
-func publishEventMarkdown(templatePath string, parsedDate time.Time, dateStr, lang string, dryRun bool) (string, EventData, FrontMatterData, error) {
+// Returns outputPath, EventData, FrontMatterData, and a boolean indicating if event was already published.
+func publishEventMarkdown(templatePath string, parsedDate time.Time, dateStr, lang string, dryRun bool) (string, EventData, FrontMatterData, bool, error) {
     // Convert date to YYMMDD format
     formattedDate := parsedDate.Format("060102")
 
@@ -162,32 +188,31 @@ func publishEventMarkdown(templatePath string, parsedDate time.Time, dateStr, la
     if !dryRun {
         if _, err := os.Stat(outputDir); os.IsNotExist(err) {
             if err := os.MkdirAll(outputDir, 0755); err != nil {
-                return "", data, FrontMatterData{}, fmt.Errorf("failed to create output directory: %v", err)
+                return "", data, FrontMatterData{}, false, fmt.Errorf("failed to create output directory: %v", err)
             }
         }
 
         tmpl, err := template.ParseFiles(templatePath)
         if err != nil {
-            return "", data, FrontMatterData{}, fmt.Errorf("error parsing template file: %v", err)
+            return "", data, FrontMatterData{}, false, fmt.Errorf("error parsing template file: %v", err)
         }
 
         outFile, err := os.Create(outputPath)
         if err != nil {
-            return "", data, FrontMatterData{}, fmt.Errorf("failed to create output file: %v", err)
+            return "", data, FrontMatterData{}, false, fmt.Errorf("failed to create output file: %v", err)
         }
         defer outFile.Close()
 
         if err := tmpl.Execute(outFile, data); err != nil {
-            return "", data, FrontMatterData{}, fmt.Errorf("error executing template: %v", err)
+            return "", data, FrontMatterData{}, false, fmt.Errorf("error executing template: %v", err)
         }
     }
 
-    // Extract front matter (title, place, city)
-    var fmData FrontMatterData
+    fmData := FrontMatterData{}
     if !dryRun {
         fm, err := extractFrontMatter(outputPath)
         if err != nil {
-            return outputPath, data, fmData, fmt.Errorf("failed to extract front matter: %v", err)
+            return outputPath, data, fmData, false, fmt.Errorf("failed to extract front matter: %v", err)
         }
         fmData = fm
     }
@@ -197,60 +222,53 @@ func publishEventMarkdown(templatePath string, parsedDate time.Time, dateStr, la
     if !dryRun {
         repoDir, err := os.Getwd()
         if err != nil {
-            return outputPath, data, fmData, fmt.Errorf("failed to get current working directory: %v", err)
+            return outputPath, data, fmData, false, fmt.Errorf("failed to get current working directory: %v", err)
         }
 
-        if err := runGitCommand(repoDir, "add", outputPath); err != nil {
-            return outputPath, data, fmData, fmt.Errorf("git add failed: %v", err)
+        if _, err := runGitCommand(repoDir, "add", outputPath); err != nil {
+            return outputPath, data, fmData, false, fmt.Errorf("git add failed: %v", err)
         }
-    }
 
-    // Log git commit
-    commitMsg := fmt.Sprintf("Add event for %s based on template %s", dateStr, templateFile)
-    log.Printf("Running 'git commit' with message: %q", commitMsg)
-    if !dryRun {
-        repoDir, err := os.Getwd()
+        // Now check if there are any changes via git diff
+        hasChanges, err := runGitCheckChanges(repoDir, outputPath)
         if err != nil {
-            return outputPath, data, fmData, fmt.Errorf("failed to get current working directory: %v", err)
+            return outputPath, data, fmData, false, err
+        }
+        if !hasChanges {
+            // No changes to commit
+            log.Println("No changes detected. The event appears to be already published.")
+            return outputPath, data, fmData, true, nil
         }
 
-        if err := runGitCommand(repoDir, "commit", "-m", commitMsg); err != nil {
-            return outputPath, data, fmData, fmt.Errorf("git commit failed: %v", err)
+        // If we reach here, changes are present, proceed to commit
+        commitMsg := fmt.Sprintf("Add event for %s based on template %s", dateStr, templateFile)
+        log.Printf("Running 'git commit' with message: %q", commitMsg)
+        if _, err := runGitCommand(repoDir, "commit", "-m", commitMsg); err != nil {
+            return outputPath, data, fmData, false, fmt.Errorf("git commit failed: %v", err)
+        }
+
+        // Log git push
+        log.Println("Running 'git push'")
+        if _, err := runGitCommand(repoDir, "push"); err != nil {
+            return outputPath, data, fmData, false, fmt.Errorf("git push failed: %v", err)
         }
     }
 
-    // Log git push
-    log.Println("Running 'git push'")
-    if !dryRun {
-        repoDir, err := os.Getwd()
-        if err != nil {
-            return outputPath, data, fmData, fmt.Errorf("failed to get current working directory: %v", err)
-        }
-
-        if err := runGitCommand(repoDir, "push"); err != nil {
-            return outputPath, data, fmData, fmt.Errorf("git push failed: %v", err)
-        }
-    }
-
-    return outputPath, data, fmData, nil
+    return outputPath, data, fmData, false, nil
 }
 
-func publishEventOnFacebook(data EventData, fmData FrontMatterData, outputPath string) error {
+func publishEventOnFacebook(data EventData, fmData FrontMatterData, outputPath string, pageAccessToken string) error {
     pageID := "351984064669408" // Replace with your actual Facebook Page ID
-    pageAccessToken := os.Getenv("FACEBOOK_PAGE_ACCESS_TOKEN")
-    if pageAccessToken == "" {
-        return fmt.Errorf("FACEBOOK_PAGE_ACCESS_TOKEN not set in environment")
-    }
 
     // Derive the event URL from the output filename.
-    baseFilename := filepath.Base(outputPath) // e.g. "241127-pachamamas.md"
+    baseFilename := filepath.Base(outputPath)
     eventSlug := strings.TrimSuffix(baseFilename, ".md")
     eventURL := fmt.Sprintf("https://forrostrasbourg.fr/evenements/%s/", eventSlug)
 
     // Create a simple French message describing the event
     message := fmt.Sprintf(
-`%s
-Se tiendra à %s, %s le %s.
+`le %s: %s
+%s, %s .
 
 Plus d'informations :
 %s`,
@@ -310,26 +328,34 @@ func main() {
         log.Fatal("You must provide a -template parameter.")
     }
 
+    // Check FACEBOOK_PAGE_ACCESS_TOKEN once if publishing to Facebook
+    var pageAccessToken string
+    if *publishFacebook {
+        pageAccessToken = os.Getenv("FACEBOOK_PAGE_ACCESS_TOKEN")
+        if pageAccessToken == "" {
+            log.Fatal("FACEBOOK_PAGE_ACCESS_TOKEN not set in environment")
+        }
+    }
+
     parsedDate, err := time.Parse("2006-01-02", *dateStr)
     if err != nil {
         log.Fatalf("Invalid date format: %v", err)
     }
 
     // Publish the markdown (file creation and git)
-    outputPath, data, fmData, err := publishEventMarkdown(*templatePath, parsedDate, *dateStr, *lang, *dryRun)
+    outputPath, data, fmData, _, err := publishEventMarkdown(*templatePath, parsedDate, *dateStr, *lang, *dryRun)
     if err != nil {
         log.Fatalf("Error publishing event: %v", err)
     }
 
+    // Event is successfully published (git)
     log.Printf("Event published successfully: %s\n", outputPath)
 
     // Attempt Facebook publishing only if requested and not dry-run
-    if *publishFacebook {
+    if *publishFacebook && !*dryRun {
         log.Println("Attempting to publish event on Facebook")
-        if !*dryRun {
-            if err := publishEventOnFacebook(data, fmData, outputPath); err != nil {
-                log.Fatalf("Failed to publish event on Facebook: %v", err)
-            }
+        if err := publishEventOnFacebook(data, fmData, outputPath, pageAccessToken); err != nil {
+            log.Fatalf("Failed to publish event on Facebook: %v", err)
         }
     }
 }
