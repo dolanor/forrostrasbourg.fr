@@ -285,15 +285,15 @@ func publishEventOnFacebook(data EventData, fmData FrontMatterData, outputPath s
 
     // Create a simple French message describing the event
     message := fmt.Sprintf(
-        `le %s: %s
-        %s, %s .
+        `%s: %s
+        %s, %s
 
 Plus d'informations :
 %s`,
+        data.LongDateCapitalized,
         fmData.Title,
         fmData.Place,
         fmData.City,
-        data.LongDateCapitalized,
         eventURL,
     )
 
