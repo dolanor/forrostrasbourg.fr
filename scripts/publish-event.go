@@ -412,8 +412,15 @@ func main() {
             }
 		}
 
-        facebookPageID := "351984064669408"
-        _, err := publishEventOnFacebook(data, fmData, eventURL, facebookPageID, pageAccessToken, *dryRun)
+        // Forro à Strasbourg
+        // https://www.facebook.com/profile.php?id=61562489966778
+        facebookPageIDForroAStrasbourg := "351984064669408"
+
+        // Forro Stras
+        // https://www.facebook.com/forrostras/
+        // facebookPageIDForroStras := "111247753705287"
+
+        _, err := publishEventOnFacebook(data, fmData, eventURL, facebookPageIDForroAStrasbourg, pageAccessToken, *dryRun)
         if err != nil {
             log.Fatalf("Failed to publish event on Facebook: %v", err)
         }
