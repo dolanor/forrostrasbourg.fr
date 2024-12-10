@@ -397,7 +397,7 @@ func main() {
 
         facebookPageID := "351984064669408"
 		log.Println("Attempting to publish event on Facebook")
-		postURL, err := publishEventOnFacebook(data, fmData, eventURL, facebookPageID, pageAccessToken)
+		_, err := publishEventOnFacebook(data, fmData, eventURL, facebookPageID, pageAccessToken)
 		if err != nil {
 			log.Fatalf("Failed to publish event on Facebook: %v", err)
 		}
