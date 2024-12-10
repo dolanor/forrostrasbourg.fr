@@ -277,6 +277,7 @@ func waitForEventPage(eventURL string, timeout, interval time.Duration) error {
         }
 
         // Page not live yet, wait before retrying
+		log.Printf("Event page not available yet. Retrying in %v...", interval)
         time.Sleep(interval)
     }
 
@@ -285,7 +286,9 @@ func waitForEventPage(eventURL string, timeout, interval time.Duration) error {
 
 // publishEventOnFacebook posts the event details to a given Facebook page.
 // It returns the URL of the published Facebook post.
-func publishEventOnFacebook(data EventData, fmData FrontMatterData, eventURL, pageID, pageAccessToken string) (string, error) {
+func publishEventOnFacebook(data EventData, fmData FrontMatterData, eventURL, pageID, pageAccessToken string, dryRun bool) (string, error) {
+	log.Printf("Publishing event on Facebook Page: %s", pageID)
+
 	// Create a simple French message describing the event
 	message := fmt.Sprintf(
 		`%s: %s
@@ -300,6 +303,15 @@ Plus d'informations :
 		eventURL,
 	)
 
+	if dryRun {
+		log.Println("[Dry Run] Would publish the following message to Facebook:")
+		log.Println(message)
+		simulatedPostURL := fmt.Sprintf("https://www.facebook.com/%s/posts/SimulatedPostID", pageID)
+		log.Printf("[Dry Run] Simulated Facebook post URL: %s\n", simulatedPostURL)
+		return simulatedPostURL, nil
+	}
+
+	// Prepare the request payload
 	url := fmt.Sprintf("https://graph.facebook.com/%s/feed", pageID)
 	requestBody := map[string]string{
 		"message":      message,
@@ -311,6 +323,7 @@ Plus d'informations :
 		return "", fmt.Errorf("error marshaling request body: %v", err)
 	}
 
+	// Perform the POST request to Facebook Graph API
 	resp, err := http.Post(url, "application/json", bytes.NewBuffer(jsonData))
 	if err != nil {
 		return "", fmt.Errorf("error posting to Facebook: %v", err)
@@ -358,6 +371,7 @@ func main() {
 	publishFacebook := flag.Bool("publish-facebook", false, "If true, attempt to publish the event on Facebook")
 	flag.Parse()
 
+	// Validate required flags
 	if *dateStr == "" {
 		log.Fatal("You must provide a -date parameter.")
 	}
@@ -374,6 +388,7 @@ func main() {
 		}
 	}
 
+	// Parse the date
 	parsedDate, err := time.Parse("2006-01-02", *dateStr)
 	if err != nil {
 		log.Fatalf("Invalid date format: %v", err)
@@ -388,18 +403,19 @@ func main() {
 	// Event is successfully published (git)
 	log.Printf("Event published successfully: %s\n", outputPath)
 
-	// Attempt Facebook publishing only if requested and not dry-run
-	if *publishFacebook && !*dryRun {
-		log.Printf("Waiting for event page to become available: %s", eventURL)
-		if err := waitForEventPage(eventURL, 5*time.Minute, 10*time.Second); err != nil {
-			log.Fatalf("Event page did not become available in time: %v", err)
+	// Attempt Facebook publishing only if requested
+	if *publishFacebook {
+		if !*dryRun {
+	    	log.Printf("Waiting for event page to become available: %s", eventURL)
+            if err := waitForEventPage(eventURL, 5*time.Minute, 10*time.Second); err != nil {
+                log.Fatalf("Event page did not become available in time: %v", err)
+            }
 		}
 
         facebookPageID := "351984064669408"
-		log.Println("Attempting to publish event on Facebook")
-		_, err := publishEventOnFacebook(data, fmData, eventURL, facebookPageID, pageAccessToken)
-		if err != nil {
-			log.Fatalf("Failed to publish event on Facebook: %v", err)
-		}
+        _, err := publishEventOnFacebook(data, fmData, eventURL, facebookPageID, pageAccessToken, *dryRun)
+        if err != nil {
+            log.Fatalf("Failed to publish event on Facebook: %v", err)
+        }
 	}
 }
