@@ -35,7 +35,7 @@
 					<div class="row">
 						<div class="col-md-12">
 							<article itemscope itemtype="https://schema.org/DanceEvent">
-								<img src="{{ .Params.banner | default (printf "/evenements/%s.jpeg" .File.BaseFileName) }}" alt="bannière" style="max-width: 100%; max-height: 300px;">
+								<img src="{{ .Params.banner }}" alt="bannière" style="max-width: 100%; max-height: 300px;">
 								<h3 itemprop="name">{{ .Title }} <a href="/evenements/{{ .File.BaseFileName }}/index.ics">📅</a></h3>
 								
 								<div><b>Date :</b> <time datetime="{{ .Params.StartDate }}" itemprop="startDate" content="{{ .Params.StartDate }}">{{ time.Format "02/01/2006" .Params.StartDate }}</time></div>
