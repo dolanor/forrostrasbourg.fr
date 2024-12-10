@@ -152,8 +152,8 @@ func extractFrontMatter(filePath string) (FrontMatterData, error) {
 
 // publishEventMarkdown creates the markdown file and handles git operations.
 // It logs every action and performs it only if dryRun is false.
-// Returns outputPath, EventData, FrontMatterData, and a boolean indicating if event was already published.
-func publishEventMarkdown(templatePath string, parsedDate time.Time, dateStr, lang string, dryRun bool) (string, EventData, FrontMatterData, bool, error) {
+// Returns outputPath, EventData, FrontMatterData, a boolean if event was already published, and eventURL.
+func publishEventMarkdown(templatePath string, parsedDate time.Time, dateStr, lang string, dryRun bool) (string, EventData, FrontMatterData, bool, string, error) {
     // Convert date to YYMMDD format
     formattedDate := parsedDate.Format("060102")
 
@@ -166,6 +166,10 @@ func publishEventMarkdown(templatePath string, parsedDate time.Time, dateStr, la
     outputFilename := fmt.Sprintf("%s-%s.md", formattedDate, baseName)
     outputDir := "content/evenements"
     outputPath := filepath.Join(outputDir, outputFilename)
+
+    // Construct the event URL
+    eventSlug := strings.TrimSuffix(outputFilename, ".md") // e.g. "241129-pachamamas"
+    eventURL := fmt.Sprintf("https://forrostrasbourg.fr/evenements/%s/", eventSlug)
 
     // Prepare EventData
     weekdayLower := getWeekdayName(parsedDate, lang)
@@ -185,23 +189,23 @@ func publishEventMarkdown(templatePath string, parsedDate time.Time, dateStr, la
     if !dryRun {
         if _, err := os.Stat(outputDir); os.IsNotExist(err) {
             if err := os.MkdirAll(outputDir, 0755); err != nil {
-                return "", data, FrontMatterData{}, false, fmt.Errorf("failed to create output directory: %v", err)
+                return "", data, FrontMatterData{}, false, eventURL, fmt.Errorf("failed to create output directory: %v", err)
             }
         }
 
         tmpl, err := template.ParseFiles(templatePath)
         if err != nil {
-            return "", data, FrontMatterData{}, false, fmt.Errorf("error parsing template file: %v", err)
+            return "", data, FrontMatterData{}, false, eventURL, fmt.Errorf("error parsing template file: %v", err)
         }
 
         outFile, err := os.Create(outputPath)
         if err != nil {
-            return "", data, FrontMatterData{}, false, fmt.Errorf("failed to create output file: %v", err)
+            return "", data, FrontMatterData{}, false, eventURL, fmt.Errorf("failed to create output file: %v", err)
         }
         defer outFile.Close()
 
         if err := tmpl.Execute(outFile, data); err != nil {
-            return "", data, FrontMatterData{}, false, fmt.Errorf("error executing template: %v", err)
+            return "", data, FrontMatterData{}, false, eventURL, fmt.Errorf("error executing template: %v", err)
         }
     }
 
@@ -209,7 +213,7 @@ func publishEventMarkdown(templatePath string, parsedDate time.Time, dateStr, la
     if !dryRun {
         fm, err := extractFrontMatter(outputPath)
         if err != nil {
-            return outputPath, data, fmData, false, fmt.Errorf("failed to extract front matter: %v", err)
+            return outputPath, data, fmData, false, eventURL, fmt.Errorf("failed to extract front matter: %v", err)
         }
         fmData = fm
     }
@@ -219,39 +223,39 @@ func publishEventMarkdown(templatePath string, parsedDate time.Time, dateStr, la
     if !dryRun {
         repoDir, err := os.Getwd()
         if err != nil {
-            return outputPath, data, fmData, false, fmt.Errorf("failed to get current working directory: %v", err)
+            return outputPath, data, fmData, false, eventURL, fmt.Errorf("failed to get current working directory: %v", err)
         }
 
         if _, err := runGitCommand(repoDir, "add", outputPath); err != nil {
-            return outputPath, data, fmData, false, fmt.Errorf("git add failed: %v", err)
+            return outputPath, data, fmData, false, eventURL, fmt.Errorf("git add failed: %v", err)
         }
 
         // Now check if there are any changes via git diff
         hasChanges, err := runGitCheckChanges(repoDir, outputPath)
         if err != nil {
-            return outputPath, data, fmData, false, err
+            return outputPath, data, fmData, false, eventURL, err
         }
         if !hasChanges {
             // No changes to commit
             log.Println("No changes detected. The event appears to be already published.")
-            return outputPath, data, fmData, true, nil
+            return outputPath, data, fmData, true, eventURL, nil
         }
 
         // If we reach here, changes are present, proceed to commit
         commitMsg := fmt.Sprintf("Add event for %s based on template %s", dateStr, templateFile)
         log.Printf("Running 'git commit' with message: %q", commitMsg)
         if _, err := runGitCommand(repoDir, "commit", "-m", commitMsg); err != nil {
-            return outputPath, data, fmData, false, fmt.Errorf("git commit failed: %v", err)
+            return outputPath, data, fmData, false, eventURL, fmt.Errorf("git commit failed: %v", err)
         }
 
         // Log git push
         log.Println("Running 'git push'")
         if _, err := runGitCommand(repoDir, "push"); err != nil {
-            return outputPath, data, fmData, false, fmt.Errorf("git push failed: %v", err)
+            return outputPath, data, fmData, false, eventURL, fmt.Errorf("git push failed: %v", err)
         }
     }
 
-    return outputPath, data, fmData, false, nil
+    return outputPath, data, fmData, false, eventURL, nil
 }
 
 // waitForEventPage checks the given URL periodically until it gets a 200 response or hits a timeout.
@@ -275,18 +279,13 @@ func waitForEventPage(eventURL string, timeout, interval time.Duration) error {
     return errors.New("timed out waiting for the event page to become available")
 }
 
-func publishEventOnFacebook(data EventData, fmData FrontMatterData, outputPath string, pageAccessToken string) error {
-    pageID := "351984064669408" // Replace with your actual Facebook Page ID
-
-    // Derive the event URL from the output filename.
-    baseFilename := filepath.Base(outputPath)
-    eventSlug := strings.TrimSuffix(baseFilename, ".md")
-    eventURL := fmt.Sprintf("https://forrostrasbourg.fr/evenements/%s/", eventSlug)
-
+// publishEventOnFacebook posts the event details to a given Facebook page.
+// pageID is passed as a parameter to allow reuse for another page.
+func publishEventOnFacebook(data EventData, fmData FrontMatterData, eventURL, pageID, pageAccessToken string) error {
     // Create a simple French message describing the event
     message := fmt.Sprintf(
-        `%s: %s
-        %s, %s
+`%s: %s
+%s, %s
 
 Plus d'informations :
 %s`,
@@ -296,12 +295,6 @@ Plus d'informations :
         fmData.City,
         eventURL,
     )
-
-    // Before publishing to Facebook, wait for the event page to become available
-    log.Printf("Waiting for event page to become available: %s", eventURL)
-    if err := waitForEventPage(eventURL, 5*time.Minute, 10*time.Second); err != nil {
-        return fmt.Errorf("event page did not become available in time: %v", err)
-    }
 
     url := fmt.Sprintf("https://graph.facebook.com/%s/feed", pageID)
     requestBody := map[string]string{
@@ -367,7 +360,7 @@ func main() {
     }
 
     // Publish the markdown (file creation and git)
-    outputPath, data, fmData, _, err := publishEventMarkdown(*templatePath, parsedDate, *dateStr, *lang, *dryRun)
+    outputPath, data, fmData, _, eventURL, err := publishEventMarkdown(*templatePath, parsedDate, *dateStr, *lang, *dryRun)
     if err != nil {
         log.Fatalf("Error publishing event: %v", err)
     }
@@ -377,8 +370,14 @@ func main() {
 
     // Attempt Facebook publishing only if requested and not dry-run
     if *publishFacebook && !*dryRun {
+        log.Printf("Waiting for event page to become available: %s", eventURL)
+        if err := waitForEventPage(eventURL, 5*time.Minute, 10*time.Second); err != nil {
+            log.Fatalf("Event page did not become available in time: %v", err)
+        }
+
         log.Println("Attempting to publish event on Facebook")
-        if err := publishEventOnFacebook(data, fmData, outputPath, pageAccessToken); err != nil {
+        facebookPageID := "351984064669408"
+        if err := publishEventOnFacebook(data, fmData, eventURL, facebookPageID, pageAccessToken); err != nil {
             log.Fatalf("Failed to publish event on Facebook: %v", err)
         }
     }
