@@ -8,7 +8,7 @@ price: gratuit (ou 2€)
 description: "pratique forró au Pachamama's 💃🇧🇷🕺"
 banner: "/evenements/banners/pachamamas.jpeg"
 social_media:
-  facebook: 
+  facebook: https://www.facebook.com/story.php?story_fbid=10225440644075723&id=1613852665&rdid=DJfgOvHyNBuL73aa
 
 facebook_site: "61562489966778"
 facebook_author: "topmoumoute"
@@ -24,4 +24,6 @@ L'entrée est gratuite pour nos élèves à jour dans le règlement de leur insc
 Nous espérons vous retrouver nombreux vendredi 20 décembre au Pachamama's pour faire fuir les brumes et autres pluies automnales dans une ambiance nordestine !
 Até breve!
 
-🌍 https://forrostrasbourg.fr/evenements/241127
+🌍 https://forrostrasbourg.fr/evenements/241220-pachamamas-pratique/
+
+🌍 https://www.facebook.com/story.php?story_fbid=10225440644075723&id=1613852665&rdid=DJfgOvHyNBuL73aa
