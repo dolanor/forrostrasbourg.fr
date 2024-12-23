@@ -33,8 +33,15 @@ type FrontMatterData struct {
 	City  string `yaml:"city"`
 }
 
-// runGitCommand executes a Git command in the specified directory.
-func runGitCommand(dir string, args ...string) (string, error) {
+// gitCommandRunner is a function type for running git commands
+type gitCommandRunner func(dir string, args ...string) (string, error)
+
+// gitChangeChecker is a function type for checking git changes
+type gitChangeChecker func(dir, filePath string) (bool, error)
+
+// Default implementations
+var (
+	runGitCommand gitCommandRunner = func(dir string, args ...string) (string, error) {
 	cmd := exec.Command("git", args...)
 	cmd.Dir = dir
 	output, err := cmd.CombinedOutput()
@@ -44,27 +51,30 @@ func runGitCommand(dir string, args ...string) (string, error) {
 	return string(output), nil
 }
 
-// runGitCheckChanges checks if there are staged changes for the specified file.
-func runGitCheckChanges(dir, filePath string) (bool, error) {
-	// run: git diff --cached --exit-code filePath
-	// exit code 0 means no changes, exit code 1 means changes present
+	runGitCheckChanges gitChangeChecker = func(dir, filePath string) (bool, error) {
 	cmd := exec.Command("git", "diff", "--cached", "--exit-code", filePath)
 	cmd.Dir = dir
 	output, err := cmd.CombinedOutput()
 	if err != nil {
-		// Check if it's just exit code 1 (changes present) or a real error
 		if exitErr, ok := err.(*exec.ExitError); ok {
-			// Exit status 1 indicates differences
 			if exitErr.ExitCode() == 1 {
-				// Changes present
 				return true, nil
 			}
 		}
 		return false, fmt.Errorf("error running git diff: %v\nOutput: %s", err, string(output))
 	}
-
-	// If we get here, err == nil, exit code 0 → no changes
 	return false, nil
+	}
+)
+
+// runGitCommand executes a Git command in the specified directory.
+func runGitCommandWrapper(runner gitCommandRunner, dir string, args ...string) (string, error) {
+	return runner(dir, args...)
+}
+
+// runGitCheckChanges checks if there are staged changes for the specified file.
+func runGitCheckChangesWrapper(checker gitChangeChecker, dir, filePath string) (bool, error) {
+	return checker(dir, filePath)
 }
 
 func getWeekdayName(d time.Time, lang string) string {
@@ -157,7 +167,7 @@ func extractFrontMatter(filePath string) (FrontMatterData, error) {
 // publishEventMarkdown creates the markdown file and handles git operations.
 // It logs every action and performs it only if dryRun is false.
 // Returns outputPath, EventData, FrontMatterData, a boolean if event was already published, and eventURL.
-func publishEventMarkdown(templatePath string, parsedDate time.Time, dateStr, lang string, dryRun bool) (string, EventData, FrontMatterData, bool, string, error) {
+func publishEventMarkdown(templatePath string, parsedDate time.Time, dateStr, lang string, dryRun bool, runner gitCommandRunner, checker gitChangeChecker) (string, EventData, FrontMatterData, bool, string, error) {
 	// Convert date to YYMMDD format
 	formattedDate := parsedDate.Format("060102")
 
@@ -230,12 +240,12 @@ func publishEventMarkdown(templatePath string, parsedDate time.Time, dateStr, la
 			return outputPath, data, fmData, false, eventURL, fmt.Errorf("failed to get current working directory: %v", err)
 		}
 
-		if _, err := runGitCommand(repoDir, "add", outputPath); err != nil {
+		if _, err := runGitCommandWrapper(runner, repoDir, "add", outputPath); err != nil {
 			return outputPath, data, fmData, false, eventURL, fmt.Errorf("git add failed: %v", err)
 		}
 
 		// Now check if there are any changes via git diff
-		hasChanges, err := runGitCheckChanges(repoDir, outputPath)
+		hasChanges, err := runGitCheckChangesWrapper(checker, repoDir, outputPath)
 		if err != nil {
 			return outputPath, data, fmData, false, eventURL, err
 		}
@@ -248,13 +258,13 @@ func publishEventMarkdown(templatePath string, parsedDate time.Time, dateStr, la
 		// If we reach here, changes are present, proceed to commit
 		commitMsg := fmt.Sprintf("Add event for %s based on template %s", dateStr, templateFile)
 		log.Printf("Running 'git commit' with message: %q", commitMsg)
-		if _, err := runGitCommand(repoDir, "commit", "-m", commitMsg); err != nil {
+		if _, err := runGitCommandWrapper(runner, repoDir, "commit", "-m", commitMsg); err != nil {
 			return outputPath, data, fmData, false, eventURL, fmt.Errorf("git commit failed: %v", err)
 		}
 
 		// Log git push
 		log.Println("Running 'git push'")
-		if _, err := runGitCommand(repoDir, "push"); err != nil {
+		if _, err := runGitCommandWrapper(runner, repoDir, "push"); err != nil {
 			return outputPath, data, fmData, false, eventURL, fmt.Errorf("git push failed: %v", err)
 		}
 	}
