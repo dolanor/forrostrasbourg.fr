@@ -617,7 +617,7 @@ Capitalized: {{ .LongDateCapitalized }}`
 			errorMsg:    "FACEBOOK_PAGE_ACCESS_TOKEN not set",
 		},
 		{
-			name: "Facebook publish with token",
+			name: "Facebook publish with token (all pages)",
 			ctx: EventContext{
 				Date:            testDate,
 				TemplatePath:    templatePath,
@@ -625,8 +625,61 @@ Capitalized: {{ .LongDateCapitalized }}`
 				DryRun:         true,
 				PublishFacebook: true,
 				PageAccessToken: "test-token",
+				FacebookPages:   "all",
 			},
 			expectError: false,
+		},
+		{
+			name: "Facebook publish to specific page",
+			ctx: EventContext{
+				Date:            testDate,
+				TemplatePath:    templatePath,
+				Language:        "fr",
+				DryRun:         true,
+				PublishFacebook: true,
+				PageAccessToken: "test-token",
+				FacebookPages:   "forro-a-strasbourg",
+			},
+			expectError: false,
+		},
+		{
+			name: "Facebook publish to multiple specific pages",
+			ctx: EventContext{
+				Date:            testDate,
+				TemplatePath:    templatePath,
+				Language:        "fr",
+				DryRun:         true,
+				PublishFacebook: true,
+				PageAccessToken: "test-token",
+				FacebookPages:   "forro-a-strasbourg,forro-stras",
+			},
+			expectError: false,
+		},
+		{
+			name: "Facebook publish to unknown page",
+			ctx: EventContext{
+				Date:            testDate,
+				TemplatePath:    templatePath,
+				Language:        "fr",
+				DryRun:         true,
+				PublishFacebook: true,
+				PageAccessToken: "test-token",
+				FacebookPages:   "unknown-page",
+			},
+			expectError: false, // Should not error, just log a warning
+		},
+		{
+			name: "Facebook publish to mix of valid and invalid pages",
+			ctx: EventContext{
+				Date:            testDate,
+				TemplatePath:    templatePath,
+				Language:        "fr",
+				DryRun:         true,
+				PublishFacebook: true,
+				PageAccessToken: "test-token",
+				FacebookPages:   "forro-a-strasbourg,unknown-page,forro-stras",
+			},
+			expectError: false, // Should not error, just log a warning for unknown page
 		},
 		{
 			name: "Invalid template path",

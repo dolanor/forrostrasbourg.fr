@@ -381,6 +381,7 @@ type EventContext struct {
 	DryRun         bool
 	PublishFacebook bool
 	PageAccessToken string
+	FacebookPages   string // Comma-separated list of Facebook pages to publish to
 }
 
 func publishEvent(ctx EventContext) error {
@@ -420,17 +421,42 @@ func publishEvent(ctx EventContext) error {
 			}
 		}
 
-		// Forro à Strasbourg
-		// https://www.facebook.com/profile.php?id=61562489966778
-		facebookPageIDForroAStrasbourg := "351984064669408"
+		// Define Facebook page IDs
+		pageIDs := map[string]string{
+			"forro-a-strasbourg": "351984064669408", // Forró à Strasbourg
+			"forro-stras":        "111247753705287", // Forró Stras
+		}
 
-		// Forro Stras
-		// https://www.facebook.com/forrostras/
-		// facebookPageIDForroStras := "111247753705287"
+		// Determine which pages to publish to
+		var selectedPages []string
+		if ctx.FacebookPages == "" || ctx.FacebookPages == "all" {
+			selectedPages = []string{"forro-a-strasbourg", "forro-stras"}
+		} else {
+			selectedPages = strings.Split(ctx.FacebookPages, ",")
+		}
 
-		_, err := publishEventOnFacebook(data, fmData, eventURL, facebookPageIDForroAStrasbourg, ctx.PageAccessToken, ctx.DryRun)
-		if err != nil {
-			return fmt.Errorf("failed to publish event on Facebook: %v", err)
+		// Publish to each selected page
+		var publishErrors []string
+		for _, pageName := range selectedPages {
+			pageID, exists := pageIDs[pageName]
+			if !exists {
+				log.Printf("Warning: Unknown Facebook page '%s', skipping", pageName)
+				continue
+			}
+
+			log.Printf("Publishing to Facebook page: %s", pageName)
+			_, err := publishEventOnFacebook(data, fmData, eventURL, pageID, ctx.PageAccessToken, ctx.DryRun)
+			if err != nil {
+				errMsg := fmt.Sprintf("Failed to publish event on Facebook page '%s': %v", pageName, err)
+				log.Printf(errMsg)
+				publishErrors = append(publishErrors, errMsg)
+				continue
+			}
+		}
+
+		// If any Facebook publishing failed, return an error with all failures
+		if len(publishErrors) > 0 {
+			return fmt.Errorf("Facebook publishing errors:\n%s", strings.Join(publishErrors, "\n"))
 		}
 	}
 
@@ -443,6 +469,7 @@ func main() {
 	lang := flag.String("lang", "fr", "Language code for date formatting (e.g. 'fr' or 'en')")
 	dryRun := flag.Bool("dry-run", false, "If true, only echo the actions without carrying them out")
 	publishFacebook := flag.Bool("publish-facebook", false, "If true, attempt to publish the event on Facebook")
+	facebookPages := flag.String("facebook-pages", "all", "Comma-separated list of Facebook pages to publish to ('all', 'forro-a-strasbourg', 'forro-stras')")
 	flag.Parse()
 
 	// Validate required flags
@@ -456,16 +483,24 @@ func main() {
 	// Parse the date
 	parsedDate, err := time.Parse("2006-01-02", *dateStr)
 	if err != nil {
-		log.Fatalf("Invalid date format: %v", err)
+		log.Fatalf("Invalid date format. Expected YYYY-MM-DD, got %s: %v", *dateStr, err)
 	}
 
+	// Get Facebook page access token from environment if needed
+	var pageAccessToken string
+	if *publishFacebook {
+		pageAccessToken = os.Getenv("FACEBOOK_PAGE_ACCESS_TOKEN")
+	}
+
+	// Create context
 	ctx := EventContext{
 		Date:            parsedDate,
 		TemplatePath:    *templatePath,
 		Language:        *lang,
 		DryRun:         *dryRun,
 		PublishFacebook: *publishFacebook,
-		PageAccessToken: os.Getenv("FACEBOOK_PAGE_ACCESS_TOKEN"),
+		PageAccessToken: pageAccessToken,
+		FacebookPages:   *facebookPages,
 	}
 
 	if err := publishEvent(ctx); err != nil {
