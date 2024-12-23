@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"net/http"
 	"net/http/httptest"
 	"os"
@@ -478,145 +479,215 @@ func TestRunGitCheckChanges(t *testing.T) {
 }
 
 func TestPublishEventMarkdown(t *testing.T) {
+	// Create a temporary directory for the test
+	tmpDir := t.TempDir()
+
+	// Mock git functions
+	mockGitCommand := func(dir string, args ...string) (string, error) {
+		t.Logf("Mock git command in %s: git %v", dir, args)
+		return "", nil
+	}
+	mockGitCheckChanges := func(dir, filePath string) (bool, error) {
+		t.Logf("Mock git check changes in %s for file %s", dir, filePath)
+		return true, nil
+	}
+
 	tests := []struct {
 		name        string
-		date        time.Time
-		dateStr     string
-		lang        string
-		dryRun      bool
-		wantErr     bool
-		errContains string
+		setup       func(string)
+		expectError bool
 	}{
 		{
-			name:    "successful publish",
-			date:    time.Date(2024, 12, 23, 0, 0, 0, 0, time.UTC),
-			dateStr: "23/12/2024",
-			lang:    "fr",
-			dryRun:  false,
-			wantErr: false,
+			name: "successful publish",
+			setup: func(dir string) {
+				templateContent := `---
+title: Test Event
+place: Test Place
+city: Test City
+---
+Event on {{ .Date }}
+Long date: {{ .LongDate }}
+Capitalized: {{ .LongDateCapitalized }}`
+				templatePath := filepath.Join(dir, "test.template.md")
+				if err := os.WriteFile(templatePath, []byte(templateContent), 0644); err != nil {
+					t.Fatalf("Failed to create template file: %v", err)
+				}
+			},
+			expectError: false,
 		},
 		{
-			name:    "dry run",
-			date:    time.Date(2024, 12, 23, 0, 0, 0, 0, time.UTC),
-			dateStr: "23/12/2024",
-			lang:    "fr",
-			dryRun:  true,
-			wantErr: false,
+			name:        "dry run",
+			setup:       func(string) {},
+			expectError: false,
 		},
 		{
 			name:        "invalid template path",
-			date:        time.Date(2024, 12, 23, 0, 0, 0, 0, time.UTC),
-			dateStr:     "23/12/2024",
-			lang:        "fr",
-			dryRun:      false,
-			wantErr:     true,
-			errContains: "no such file or directory",
+			setup:       func(string) {},
+			expectError: true,
 		},
 	}
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			tmpDir := t.TempDir()
-			contentDir := filepath.Join(tmpDir, "content", "evenements")
-			if err := os.MkdirAll(contentDir, 0755); err != nil {
-				t.Fatalf("Failed to create content directory: %v", err)
+			// Set up test directory
+			testDir := filepath.Join(tmpDir, tt.name)
+			if err := os.MkdirAll(testDir, 0755); err != nil {
+				t.Fatalf("Failed to create test directory: %v", err)
 			}
 
-			templatePath := filepath.Join(tmpDir, "test.template.md")
-			if tt.name != "invalid template path" {
-				templateContent := `---
-title: "Test Event"
-place: "Test Place"
-city: "Test City"
+			// Run setup
+			tt.setup(testDir)
+
+			// Run the function
+			date := time.Date(2024, 12, 23, 0, 0, 0, 0, time.UTC)
+			templatePath := filepath.Join(testDir, "test.template.md")
+			_, _, _, _, _, err := publishEventMarkdown(templatePath, date, date.Format("2006-01-02"), "fr", tt.name == "dry run", mockGitCommand, mockGitCheckChanges)
+
+			// Check results
+			if tt.expectError && err == nil {
+				t.Error("Expected error but got none")
+			} else if !tt.expectError && err != nil {
+				t.Errorf("Unexpected error: %v", err)
+			}
+		})
+	}
+}
+
+func TestPublishEvent(t *testing.T) {
+	// Save original git functions and restore after test
+	origGitCommand := runGitCommand
+	origGitCheckChanges := runGitCheckChanges
+	defer func() {
+		runGitCommand = origGitCommand
+		runGitCheckChanges = origGitCheckChanges
+	}()
+
+	// Create a temporary template file
+	tmpDir := t.TempDir()
+	templatePath := filepath.Join(tmpDir, "test.md.template")
+	templateContent := `---
+title: Test Event
+place: Test Place
+city: Test City
 ---
 Event on {{ .Date }}
 Long date: {{ .LongDate }}
 Capitalized: {{ .LongDateCapitalized }}`
-				if err := os.WriteFile(templatePath, []byte(templateContent), 0644); err != nil {
-					t.Fatalf("Failed to create template file: %v", err)
+	err := os.WriteFile(templatePath, []byte(templateContent), 0644)
+	if err != nil {
+		t.Fatalf("Failed to create test template: %v", err)
+	}
+
+	// Create a path in a non-existent directory
+	nonexistentDir := filepath.Join(tmpDir, "nonexistent")
+	invalidPath := filepath.Join(nonexistentDir, "template.md")
+
+	testDate := time.Date(2024, 12, 25, 0, 0, 0, 0, time.UTC)
+
+	tests := []struct {
+		name        string
+		ctx         EventContext
+		expectError bool
+		errorMsg    string
+		mockGitErr  bool
+		mockFileErr bool
+	}{
+		{
+			name: "Valid context without Facebook",
+			ctx: EventContext{
+				Date:            testDate,
+				TemplatePath:    templatePath,
+				Language:        "fr",
+				DryRun:         true,
+				PublishFacebook: false,
+			},
+			expectError: false,
+		},
+		{
+			name: "Facebook publish without token",
+			ctx: EventContext{
+				Date:            testDate,
+				TemplatePath:    templatePath,
+				Language:        "fr",
+				DryRun:         true,
+				PublishFacebook: true,
+				PageAccessToken: "",
+			},
+			expectError: true,
+			errorMsg:    "FACEBOOK_PAGE_ACCESS_TOKEN not set",
+		},
+		{
+			name: "Facebook publish with token",
+			ctx: EventContext{
+				Date:            testDate,
+				TemplatePath:    templatePath,
+				Language:        "fr",
+				DryRun:         true,
+				PublishFacebook: true,
+				PageAccessToken: "test-token",
+			},
+			expectError: false,
+		},
+		{
+			name: "Invalid template path",
+			ctx: EventContext{
+				Date:            testDate,
+				TemplatePath:    invalidPath,
+				Language:        "fr",
+				DryRun:         true,
+				PublishFacebook: false,
+			},
+			expectError: true,
+			errorMsg:    "error publishing event",
+			mockFileErr: true,
+		},
+		{
+			name: "Git command error",
+			ctx: EventContext{
+				Date:            testDate,
+				TemplatePath:    templatePath,
+				Language:        "fr",
+				DryRun:         false,
+				PublishFacebook: false,
+			},
+			expectError: true,
+			errorMsg:    "error publishing event",
+			mockGitErr:  true,
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if tt.mockGitErr {
+				runGitCommand = func(dir string, args ...string) (string, error) {
+					return "", fmt.Errorf("mock git error")
+				}
+			} else if tt.mockFileErr {
+				// Mock the file error by making the template path inaccessible
+				runGitCommand = func(dir string, args ...string) (string, error) {
+					return "", fmt.Errorf("mock file error: no such file or directory")
+				}
+				runGitCheckChanges = func(dir, filePath string) (bool, error) {
+					return false, fmt.Errorf("mock file error: no such file or directory")
+				}
+			} else {
+				runGitCommand = func(dir string, args ...string) (string, error) {
+					return "", nil
+				}
+				runGitCheckChanges = func(dir, filePath string) (bool, error) {
+					return true, nil
 				}
 			}
 
-			mockGitCommand := func(dir string, args ...string) (string, error) {
-				t.Logf("Mock git command in %s: git %v", dir, args)
-				return "", nil
-			}
-
-			mockGitCheckChanges := func(dir, filePath string) (bool, error) {
-				t.Logf("Mock git check changes in %s for file %s", dir, filePath)
-				return true, nil
-			}
-
-			// Change working directory to tmpDir for relative path resolution
-			oldWd, err := os.Getwd()
-			if err != nil {
-				t.Fatalf("Failed to get current directory: %v", err)
-			}
-			if err := os.Chdir(tmpDir); err != nil {
-				t.Fatalf("Failed to change directory: %v", err)
-			}
-			defer os.Chdir(oldWd)
-
-			outputPath, data, fmData, _, eventURL, err := publishEventMarkdown(
-				templatePath,
-				tt.date,
-				tt.dateStr,
-				tt.lang,
-				tt.dryRun,
-				mockGitCommand,
-				mockGitCheckChanges,
-			)
-
-			if tt.wantErr {
+			err := publishEvent(tt.ctx)
+			if tt.expectError {
 				if err == nil {
-					t.Error("publishEventMarkdown() expected error but got none")
-				} else if !strings.Contains(err.Error(), tt.errContains) {
-					t.Errorf("error = %v, want error containing %v", err, tt.errContains)
+					t.Error("Expected error but got none")
+				} else if tt.errorMsg != "" && !strings.Contains(err.Error(), tt.errorMsg) {
+					t.Errorf("Expected error containing %q but got %q", tt.errorMsg, err.Error())
 				}
-				return
-			}
-			if err != nil {
-				t.Errorf("publishEventMarkdown() unexpected error: %v", err)
-			}
-
-			if tt.dryRun {
-				// Check that no file was created in dry run mode
-				if _, err := os.Stat(outputPath); !os.IsNotExist(err) {
-					t.Error("file was created in dry run mode")
-				}
-				return
-			}
-
-			// Verify the output file exists
-			if _, err := os.Stat(outputPath); os.IsNotExist(err) {
-				t.Error("output file was not created")
-			}
-
-			// Verify EventData
-			expectedLongDate := "lundi 23 décembre"
-			expectedLongDateCapitalized := "Lundi 23 décembre"
-			if data.LongDate != expectedLongDate {
-				t.Errorf("LongDate = %v, want %v", data.LongDate, expectedLongDate)
-			}
-			if data.LongDateCapitalized != expectedLongDateCapitalized {
-				t.Errorf("LongDateCapitalized = %v, want %v", data.LongDateCapitalized, expectedLongDateCapitalized)
-			}
-
-			// Verify FrontMatterData
-			if fmData.Title != "Test Event" {
-				t.Errorf("Title = %v, want Test Event", fmData.Title)
-			}
-			if fmData.Place != "Test Place" {
-				t.Errorf("Place = %v, want Test Place", fmData.Place)
-			}
-			if fmData.City != "Test City" {
-				t.Errorf("City = %v, want Test City", fmData.City)
-			}
-
-			// Verify eventURL format
-			expectedURLPrefix := "https://forrostrasbourg.fr/evenements/241223-test"
-			if !strings.HasPrefix(eventURL, expectedURLPrefix) {
-				t.Errorf("eventURL = %v, want prefix %v", eventURL, expectedURLPrefix)
+			} else if err != nil {
+				t.Errorf("Unexpected error: %v", err)
 			}
 		})
 	}

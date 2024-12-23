@@ -42,28 +42,28 @@ type gitChangeChecker func(dir, filePath string) (bool, error)
 // Default implementations
 var (
 	runGitCommand gitCommandRunner = func(dir string, args ...string) (string, error) {
-	cmd := exec.Command("git", args...)
-	cmd.Dir = dir
-	output, err := cmd.CombinedOutput()
-	if err != nil {
-		return string(output), fmt.Errorf("failed to run git command '%v': %v\nOutput: %s", args, err, string(output))
+		cmd := exec.Command("git", args...)
+		cmd.Dir = dir
+		output, err := cmd.CombinedOutput()
+		if err != nil {
+			return string(output), fmt.Errorf("failed to run git command '%v': %v\nOutput: %s", args, err, string(output))
+		}
+		return string(output), nil
 	}
-	return string(output), nil
-}
 
 	runGitCheckChanges gitChangeChecker = func(dir, filePath string) (bool, error) {
-	cmd := exec.Command("git", "diff", "--cached", "--exit-code", filePath)
-	cmd.Dir = dir
-	output, err := cmd.CombinedOutput()
-	if err != nil {
-		if exitErr, ok := err.(*exec.ExitError); ok {
-			if exitErr.ExitCode() == 1 {
-				return true, nil
+		cmd := exec.Command("git", "diff", "--cached", "--exit-code", filePath)
+		cmd.Dir = dir
+		output, err := cmd.CombinedOutput()
+		if err != nil {
+			if exitErr, ok := err.(*exec.ExitError); ok {
+				if exitErr.ExitCode() == 1 {
+					return true, nil
+				}
 			}
+			return false, fmt.Errorf("error running git diff: %v\nOutput: %s", err, string(output))
 		}
-		return false, fmt.Errorf("error running git diff: %v\nOutput: %s", err, string(output))
-	}
-	return false, nil
+		return false, nil
 	}
 )
 
@@ -373,6 +373,70 @@ Plus d'informations :
 	return postURL, nil
 }
 
+// EventContext contains all parameters needed for event publishing
+type EventContext struct {
+	Date            time.Time
+	TemplatePath    string
+	Language        string
+	DryRun         bool
+	PublishFacebook bool
+	PageAccessToken string
+}
+
+func publishEvent(ctx EventContext) error {
+	// Check FACEBOOK_PAGE_ACCESS_TOKEN once if publishing to Facebook
+	if ctx.PublishFacebook && ctx.PageAccessToken == "" {
+		return fmt.Errorf("FACEBOOK_PAGE_ACCESS_TOKEN not set")
+	}
+
+	// Check if template file exists
+	if _, err := os.Stat(ctx.TemplatePath); os.IsNotExist(err) {
+		return fmt.Errorf("error publishing event: template file does not exist: %s", ctx.TemplatePath)
+	}
+
+	// Publish the markdown (file creation and git)
+	outputPath, data, fmData, _, eventURL, err := publishEventMarkdown(
+		ctx.TemplatePath,
+		ctx.Date,
+		ctx.Date.Format("2006-01-02"),
+		ctx.Language,
+		ctx.DryRun,
+		runGitCommand,
+		runGitCheckChanges,
+	)
+	if err != nil {
+		return fmt.Errorf("error publishing event: %v", err)
+	}
+
+	// Event is successfully published (git)
+	log.Printf("Event published successfully: %s\n", outputPath)
+
+	// Attempt Facebook publishing only if requested
+	if ctx.PublishFacebook {
+		if !ctx.DryRun {
+			log.Printf("Waiting for event page to become available: %s", eventURL)
+			if err := waitForEventPage(eventURL, 5*time.Minute, 10*time.Second); err != nil {
+				return fmt.Errorf("event page did not become available in time: %v", err)
+			}
+		}
+
+		// Forro à Strasbourg
+		// https://www.facebook.com/profile.php?id=61562489966778
+		facebookPageIDForroAStrasbourg := "351984064669408"
+
+		// Forro Stras
+		// https://www.facebook.com/forrostras/
+		// facebookPageIDForroStras := "111247753705287"
+
+		_, err := publishEventOnFacebook(data, fmData, eventURL, facebookPageIDForroAStrasbourg, ctx.PageAccessToken, ctx.DryRun)
+		if err != nil {
+			return fmt.Errorf("failed to publish event on Facebook: %v", err)
+		}
+	}
+
+	return nil
+}
+
 func main() {
 	dateStr := flag.String("date", "", "Event date in YYYY-MM-DD format")
 	templatePath := flag.String("template", "", "Path to the template markdown file (e.g. pachamamas.md.template)")
@@ -389,50 +453,22 @@ func main() {
 		log.Fatal("You must provide a -template parameter.")
 	}
 
-	// Check FACEBOOK_PAGE_ACCESS_TOKEN once if publishing to Facebook
-	var pageAccessToken string
-	if *publishFacebook {
-		pageAccessToken = os.Getenv("FACEBOOK_PAGE_ACCESS_TOKEN")
-		if pageAccessToken == "" {
-			log.Fatal("FACEBOOK_PAGE_ACCESS_TOKEN not set in environment")
-		}
-	}
-
 	// Parse the date
 	parsedDate, err := time.Parse("2006-01-02", *dateStr)
 	if err != nil {
 		log.Fatalf("Invalid date format: %v", err)
 	}
 
-	// Publish the markdown (file creation and git)
-	outputPath, data, fmData, _, eventURL, err := publishEventMarkdown(*templatePath, parsedDate, *dateStr, *lang, *dryRun)
-	if err != nil {
-		log.Fatalf("Error publishing event: %v", err)
+	ctx := EventContext{
+		Date:            parsedDate,
+		TemplatePath:    *templatePath,
+		Language:        *lang,
+		DryRun:         *dryRun,
+		PublishFacebook: *publishFacebook,
+		PageAccessToken: os.Getenv("FACEBOOK_PAGE_ACCESS_TOKEN"),
 	}
 
-	// Event is successfully published (git)
-	log.Printf("Event published successfully: %s\n", outputPath)
-
-	// Attempt Facebook publishing only if requested
-	if *publishFacebook {
-		if !*dryRun {
-			log.Printf("Waiting for event page to become available: %s", eventURL)
-			if err := waitForEventPage(eventURL, 5*time.Minute, 10*time.Second); err != nil {
-				log.Fatalf("Event page did not become available in time: %v", err)
-			}
-		}
-
-		// Forro à Strasbourg
-		// https://www.facebook.com/profile.php?id=61562489966778
-		facebookPageIDForroAStrasbourg := "351984064669408"
-
-		// Forro Stras
-		// https://www.facebook.com/forrostras/
-		// facebookPageIDForroStras := "111247753705287"
-
-		_, err := publishEventOnFacebook(data, fmData, eventURL, facebookPageIDForroAStrasbourg, pageAccessToken, *dryRun)
-		if err != nil {
-			log.Fatalf("Failed to publish event on Facebook: %v", err)
-		}
+	if err := publishEvent(ctx); err != nil {
+		log.Fatal(err)
 	}
 }
