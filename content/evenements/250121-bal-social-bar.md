@@ -1,5 +1,5 @@
 ---
-title: "Bal Forró 💃🪗△🥁🇧🇷🕺"
+title: "🎵 Bal Forró Strasbourg au Social Bar ! 💃🪗△🥁🇧🇷🕺"
 startDate: "2025-01-21T19:00:00+02:00"
 endDate:   "2025-01-21T23:00:00+02:00"
 place: Social Bar, 69 Rue du Faubourg-de-Pierre
