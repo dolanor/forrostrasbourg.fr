@@ -8,7 +8,7 @@ price: gratuit (ou 2€)
 description: "pratique forró au Pachamama's 💃🇧🇷🕺"
 banner: "/evenements/banners/pachamamas.jpeg"
 social_media:
-  facebook: 
+  facebook: https://www.facebook.com/share/r/18V4WnwRvL/
 
 facebook_site: "61562489966778"
 facebook_author: "topmoumoute"
