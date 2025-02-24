@@ -7,7 +7,7 @@ city: Strasbourg
 price: gratuit
 banner: "/evenements/banners/social_bar.jpeg"
 social_media:
-  facebook: 
+  facebook: https://www.facebook.com/events/638298022022274/638298032022273
 ---
 
 19h à 20h - Cours d’initiation gratuit : Apprenez les bases du forró et découvrez les rythmes qui composent son univers musical 🎶. Aucune expérience requise, venez juste avec votre sourire et votre envie de danser !
