@@ -1,7 +1,7 @@
 ---
 title: "Festival de la Culture Brésilienne 💃🇧🇷🕺"
-startDate: "2025-04-26T20:00:00+02:00"
-endDate:   "2025-04-26T23:30:00+02:00"
+startDate: "2025-05-10T19:00:00+02:00"
+endDate:   "2025-05-10T23:30:00+02:00"
 place: 2 rue de l'église
 city:  Walbourg
 price: 10€
