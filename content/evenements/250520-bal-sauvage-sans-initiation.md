@@ -1,5 +1,5 @@
 ---
-title: "Forró initiation et bal sauvage 💃🇧🇷🕺"
+title: "Forró bal sauvage 💃🇧🇷🕺"
 startDate: "2025-05-20T18:30:00+02:00"
 endDate:   "2025-05-20T22:00:00+02:00"
 place: 36 quai des bateliers
