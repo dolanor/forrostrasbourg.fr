@@ -1,7 +1,7 @@
 ---
 title: "pratique Forró 💃🇧🇷🕺"
-startDate: "2025-06-06T20:30:00+02:00"
-endDate:   "2025-06-06T22:30:00+02:00"
+startDate: "2025-06-04T20:30:00+02:00"
+endDate:   "2025-06-04T22:30:00+02:00"
 place: Pachamama's, 1 passage d'Osthouse
 city: Strasbourg
 price: gratuit (ou 2€)
@@ -14,9 +14,9 @@ facebook_site: "61562489966778"
 facebook_author: "topmoumoute"
 ---
 
-Venez nous rejoindre pour notre pratique mensuelle de forró au Pachamama's !
+Venez nous rejoindre pour notre dernière pratique de l'année de forró au Pachamama's !
 
-Vendredi 6 juin, nous nous ferons un plaisir de vous retrouver pour danser le forró ensemble de 20h30 à 22h30.
+Mercredi 4 juin, nous nous ferons un plaisir de vous retrouver pour danser le forró ensemble de 20h45 à 22h45.
 
 Pour les nouveaux, n'ayez pas peur, vous aurez déjà des bases d'ici là et nous nous tiendrons à disposition pour vous encourager et pour danser avec vous si vous le souhaitez !
 
@@ -25,5 +25,5 @@ Pensez à apporter:
 - une gourde avec de l'eau
 
 L'entrée est gratuite pour nos élèves à jour dans le règlement de leur inscription. Nous demandons une participation aux frais de location de 2€ pour les autres.  
-Nous espérons vous retrouver nombreux vendredi 6 juin au Pachamama's pour faire fuir les brumes et autres pluies automnales dans une ambiance nordestine !
+Nous espérons vous retrouver nombreux mercredi 4 juin au Pachamama's pour faire fuir les brumes et autres pluies automnales dans une ambiance nordestine !
 Até breve!
