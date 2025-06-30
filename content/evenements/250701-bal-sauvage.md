@@ -7,7 +7,7 @@ city: Strasbourg
 price: gratuit
 banner: "/evenements/banners/quai-bateliers.jpeg"
 social_media:
-  facebook: 
+  facebook: https://fb.me/e/5JerhxS6F
 ---
 
 On continue les bals en plein air pendant les vacances si la météo est bonne. Les infos seront diffusées sur le groupe signal : https://signal.group/#CjQKIGXkFWEmgPkX3TmibvjdV-UgtDXZajRkwjWnF19AJxY0EhBYWmbHZt421KVe1ADWHxG_
@@ -22,8 +22,6 @@ https://www.youtube.com/watch?v=9O15k6Me0EY
 
 N'hésitez pas à prendre de quoi pic-niquer et surtout à boire.  
 Sinon, il y a un kebab en face et le Bio Burger.  
-
-🌦️ La météo peut être pluvieuse. J'annoncerai sur le groupe signal si on bouge d'endroit pour être à l'abri ou si on doit annuler à 18h si la météo n'est pas clémente.
 
 📌 Quai des Bateliers en face de Librairie Le Tigre  
 🕖 18:30 Début du bal  
