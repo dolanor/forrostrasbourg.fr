@@ -7,7 +7,7 @@ city: Strasbourg
 price: gratuit
 banner: "/evenements/banners/quai-bateliers.jpeg"
 social_media:
-  facebook: 
+  facebook: https://fb.me/e/1PYCkmeJpm
 ---
 
 On continue les bals en plein air pendant les vacances si la météo est bonne. Les infos seront diffusées sur le groupe signal : https://signal.group/#CjQKIGXkFWEmgPkX3TmibvjdV-UgtDXZajRkwjWnF19AJxY0EhBYWmbHZt421KVe1ADWHxG_
