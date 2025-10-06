@@ -1,5 +1,5 @@
 
-
+/*
 window.addEventListener("load",	() => {
 
 	if (!("Notification" in window)) {
@@ -65,3 +65,4 @@ window.addEventListener("load",	() => {
 		}
 	});
 });
+*/
