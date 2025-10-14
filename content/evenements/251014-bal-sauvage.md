@@ -1,6 +1,6 @@
 ---
 title: "Forró initiation et bal sauvage 💃🇧🇷🕺"
-startDate: "2025-10-14T18:30:00+02:00"
+startDate: "2025-10-14T17:00:00+02:00"
 endDate:   "2025-10-14T22:00:00+02:00"
 place: 36 quai des bateliers
 city: Strasbourg
