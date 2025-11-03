@@ -1,5 +1,6 @@
 ---
 title: "🎵 Bal Forró Strasbourg à la Kulture ! 💃🪗△🥁🇧🇷🕺"
+description: "Bal Forró Strasbourg à la Kulture ! 💃🪗△🥁🇧🇷🕺"
 startDate: "2025-11-04T18:00:00+02:00"
 endDate:   "2025-11-04T23:00:00+02:00"
 place: La Kulture, 9 rue des bateliers
@@ -8,6 +9,9 @@ price: gratuit (consommation sur place boisson et repas)
 banner: "/evenements/banners/kulture.jpeg"
 social_media:
   instagram: https://www.instagram.com/lakulture.v2/
+
+facebook_site: "61562489966778"
+facebook_author: "topmoumoute"
 ---
 
 Bal forró à La Kulture ! 
@@ -17,19 +21,14 @@ L'entrée est gratuite, mais pour que le bar puisse continuer à nous accueillir
 
 Pour ceux qui ne connaissent pas ce bar/café hyper sympa, voici quelques photos sur leur Instagram : https://www.instagram.com/lakulture.v2/
 
-## Pourquoi venir ?
 
-✨ Découvrir une danse authentique et accessible à tous les niveaux
+# Vidéos
 
-✨ Rencontrer une communauté ouverte, bienveillante et conviviale (on adore voir de nouveaux visages !)
+## Forró
 
-✨ Passer une soirée rythmée, riche en énergie positive et en sourires
+<iframe width="560" height="315" src="https://www.youtube.com/embed/xCM17UIY6UU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
-## Forró késako ?
-
-https://youtu.be/Ml6g37aFXJk
-
-https://tinyurl.com/interview-groupe-forro
+<iframe width="560" height="315" src="https://www.youtube.com/embed/9O15k6Me0EY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 ## Infos pratiques:
 
