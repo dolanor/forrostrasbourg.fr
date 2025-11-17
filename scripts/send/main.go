@@ -16,6 +16,7 @@ import (
 	"text/template"
 	"time"
 
+	"github.com/joho/godotenv"
 	"github.com/yuin/goldmark"
 	"github.com/yuin/goldmark/parser"
 	"go.abhg.dev/goldmark/frontmatter"
@@ -38,15 +39,23 @@ type config struct {
 
 func loadConfig() (config, error) {
 	cfg := config{}
+	err := godotenv.Load()
+	if err != nil {
+		return cfg, err
+	}
+
 	var ok bool
+
 	cfg.beeperAccessToken, ok = os.LookupEnv("BEEPER_ACCESS_TOKEN")
 	if !ok {
 		return cfg, errors.New("BEEPER_ACCESS_TOKEN not set in env")
 	}
+
 	cfg.chatID, ok = os.LookupEnv("FORROSTRASBOURG_CHAT_GROUP_ID")
 	if !ok {
 		return cfg, errors.New("FORROSTRASBOURG_CHAT_GROUP_ID not set in env")
 	}
+
 	return cfg, nil
 }
 
