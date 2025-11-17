@@ -1,8 +1,8 @@
 ---
 title: "🎵 Bal Forró Strasbourg à la Kulture ! 💃🪗△🥁🇧🇷🕺"
 description: "Bal Forró Strasbourg à la Kulture ! 💃🪗△🥁🇧🇷🕺"
-startDate: "2025-11-18T18:30:00+02:00"
-endDate:   "2025-11-18T23:00:00+02:00"
+startDate: "2025-11-18T18:30:00+01:00"
+endDate:   "2025-11-18T23:00:00+01:00"
 place: La Kulture, 9 rue des bateliers
 city: Strasbourg
 price: gratuit (consommation sur place boisson et repas)
