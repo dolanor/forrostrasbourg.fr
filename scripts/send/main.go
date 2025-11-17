@@ -160,12 +160,12 @@ func run(beeperAccessToken string, chatID string) error {
 
 	message := buf.String()
 	fmt.Println("MESSAGE:\n", message)
-	return nil
 
 	err = sendToGroup(beeperAccessToken, chatID, message)
 	if err != nil {
 		return err
 	}
+	fmt.Println("MESSAGE SENT")
 
 	return nil
 }
