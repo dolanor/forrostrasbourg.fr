@@ -16,7 +16,6 @@ facebook_author: "topmoumoute"
 
 Olá, forrozeir@s!
 
-Notre prochain bal forró à La Kulture aura lieu ce mardi 11/11 ! 🎉
 Ce sera de 18h30 à 23h au 9 Rue des Bateliers (à deux pas des quais où on danse d'habitude) et il y aura une initiation à 19h.
 
 L'entrée est gratuite, mais pour que le bar puisse continuer à nous accueillir, on vous invite à consommer au moins une boisson et/ou snack par personne. Ils proposent une large gamme de boissons avec ou sans alcool, dont des cocktails délicieux, ainsi que des wraps et des feuilletés si vous voulez manger sur place (https://www.la-kulture.com/). Et si vous arrivez avant 22h, vous pouvez aussi profiter du happy hour :)
