@@ -1,7 +1,7 @@
 ---
 title: "Cours de Forró débutant 💃🇧🇷🕺"
-startDate: "2025-11-17T19:30:00+02:00"
-endDate:   "2025-11-17T20:30:00+02:00"
+startDate: "2025-11-17T19:30:00+01:00"
+endDate:   "2025-11-17T20:30:00+01:00"
 place: Foyer protestant de la Meinau, 36 avenue Christian Pfister
 city: Strasbourg
 price: 200€ (l'année), cours d'essai gratuit
