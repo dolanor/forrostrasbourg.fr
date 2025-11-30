@@ -32,6 +32,18 @@ Pour cette semaine, on a :
 Au plaisir de vous y voir
 `
 
+func main() {
+	cfg, err := loadConfig()
+	if err != nil {
+		panic(err)
+	}
+
+	err = run(cfg.beeperAccessToken, cfg.chatID)
+	if err != nil {
+		panic(err)
+	}
+}
+
 type config struct {
 	beeperAccessToken string
 	chatID            string
@@ -57,18 +69,6 @@ func loadConfig() (config, error) {
 	}
 
 	return cfg, nil
-}
-
-func main() {
-	cfg, err := loadConfig()
-	if err != nil {
-		panic(err)
-	}
-
-	err = run(cfg.beeperAccessToken, cfg.chatID)
-	if err != nil {
-		panic(err)
-	}
 }
 
 type event struct {
