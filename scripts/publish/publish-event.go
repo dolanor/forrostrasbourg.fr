@@ -378,7 +378,7 @@ type EventContext struct {
 	Date            time.Time
 	TemplatePath    string
 	Language        string
-	DryRun         bool
+	DryRun          bool
 	PublishFacebook bool
 	PageAccessToken string
 	FacebookPages   string // Comma-separated list of Facebook pages to publish to
@@ -497,7 +497,7 @@ func main() {
 		Date:            parsedDate,
 		TemplatePath:    *templatePath,
 		Language:        *lang,
-		DryRun:         *dryRun,
+		DryRun:          *dryRun,
 		PublishFacebook: *publishFacebook,
 		PageAccessToken: pageAccessToken,
 		FacebookPages:   *facebookPages,
