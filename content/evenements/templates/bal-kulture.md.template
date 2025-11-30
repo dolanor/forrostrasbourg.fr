@@ -1,7 +1,7 @@
 ---
 title: "🎵 Bal Forró Strasbourg à la Kulture ! 💃🪗△🥁🇧🇷🕺"
 description: "Bal Forró Strasbourg à la Kulture ! 💃🪗△🥁🇧🇷🕺"
-startDate: "{{.Date}}T18:00:00+02:00"
+startDate: "{{.Date}}T18:30:00+02:00"
 endDate:   "{{.Date}}T23:00:00+02:00"
 place: La Kulture, 9 rue des bateliers
 city: Strasbourg
