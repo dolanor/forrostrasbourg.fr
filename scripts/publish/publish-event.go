@@ -263,10 +263,10 @@ func publishEventMarkdown(templatePath string, parsedDate time.Time, dateStr, la
 		}
 
 		// Log git push
-		log.Println("Running 'git push'")
-		if _, err := runGitCommandWrapper(runner, repoDir, "push"); err != nil {
-			return outputPath, data, fmData, false, eventURL, fmt.Errorf("git push failed: %v", err)
-		}
+		//log.Println("Running 'git push'")
+		//if _, err := runGitCommandWrapper(runner, repoDir, "push"); err != nil {
+		//	return outputPath, data, fmData, false, eventURL, fmt.Errorf("git push failed: %v", err)
+		//}
 	}
 
 	return outputPath, data, fmData, false, eventURL, nil
