@@ -81,7 +81,7 @@ type event struct {
 }
 
 func run(beeperAccessToken string, chatID string) error {
-	currentYear, currentWeek := time.Now().UTC().ISOWeek()
+	currentYear, currentWeek := time.Now().Add(24 * time.Hour).UTC().ISOWeek()
 	md := goldmark.New(
 		goldmark.WithExtensions(
 			&frontmatter.Extender{},
@@ -161,6 +161,10 @@ func run(beeperAccessToken string, chatID string) error {
 	message := buf.String()
 	fmt.Println("MESSAGE:\n", message)
 
+	if len(os.Args) < 2 || os.Args[1] != "-send" {
+		slog.Info("not sending")
+		return nil
+	}
 	err = sendToGroup(beeperAccessToken, chatID, message)
 	if err != nil {
 		return err
