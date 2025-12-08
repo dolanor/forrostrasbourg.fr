@@ -2,7 +2,7 @@
 title: "🎵 Bal Forró Strasbourg à la Kulture ! 💃🪗△🥁🇧🇷🕺"
 description: "Bal Forró Strasbourg à la Kulture ! 💃🪗△🥁🇧🇷🕺"
 startDate: "{{.Date}}T18:30:00+02:00"
-endDate:   "{{.Date}}T23:00:00+02:00"
+endDate:   "{{.Date}}T23:30:00+02:00"
 place: La Kulture, 9 rue des bateliers
 city: Strasbourg
 price: gratuit (consommation sur place boisson et repas)
@@ -27,7 +27,7 @@ Une initiation est proposée en début de soirée pour permettre aux personnes n
 
 💶 Entrée et initiation gratuites sous consommation au bar.
 
-📍Lieu : La Kulture - 9 rue des Bateliers, sous-sol
+📍 Lieu : La Kulture - 9 rue des Bateliers, sous-sol
 
 👥 À propos de nous : Forró Strasbourg est une communauté interculturelle de passionné.e.s par le Forró et la culture brésilienne rassemblant aussi bien des débutant.e.s que des danseureuses plus expérimenté.e.s. Nous sommes toujours ravi.e.s d'accueillir de nouvelles personnes ayant envie de découvrir cette danse populaire originaire du Nord-est du Brésil. Nos valeurs sont basées sur le respect, le consentement, la tolérance et la bienveillance envers les autres et nous refusons toute sorte de discrimination. Les rôles (leader/follower) ne sont pas genrés.
 
