@@ -4,7 +4,7 @@ startDate: "2025-12-12T18:00:00+01:00"
 endDate:   "2025-12-12T23:30:00+01:00"
 place: 17 rue Principale
 city:  Cosswiller
-price: 0€ (15 € pour restauration, réservation obligatoire par téléphone <a href="tel:+33679507404">06-79-50-74-04</a>)
+price: 0€ (15 € pour restauration, réservation obligatoire par téléphone tel:+33679507404 )
 description:  "Soirée Tropicale à la Mercière 💃🇧🇷🕺"
 banner: "/evenements/251212-la-merciere.jpeg"
 social_media:
