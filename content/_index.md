@@ -6,8 +6,6 @@ TL;DR : [Notre groupe signal où on publie nos événements](https://signal.grou
 [Les évènements](/evenements)  
 [Le Forró](/forro)  
 
-<img alt="Les forrozeiros de Strasbourg au O'Kivu" src="evenements/banners/okivu.jpeg" width="100%">
-
 Forró Strasbourg a pour but de faire découvrir cette musique et cette danse du Brésil.
 
 On organise des bals en plein air de manière régulière pendant l'été et espérons avoir des salles pour l'année scolaire.
