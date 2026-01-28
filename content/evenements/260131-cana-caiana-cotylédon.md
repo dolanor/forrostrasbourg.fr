@@ -9,7 +9,6 @@ description: "Cana Caiana chez le Cotylédon 💃🇧🇷🕺"
 
 facebook_site: "61562489966778"
 facebook_author: "topmoumoute"
-draft: true
 
 ---
 
