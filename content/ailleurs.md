@@ -86,6 +86,14 @@ Pour échanger vos billets de festival :
 
 <i class="fab fa-whatsapp" style="color: #25D366"></i> https://chat.whatsapp.com/DWKpZxDXGKL22q3UGtWHNk
 
+### Karlsruhe
+
+https://forroinkarlsruhe.de/
+
+https://linktr.ee/forroinkarlsruhe
+
+<i class="fab fa-whatsapp" style="color: #25D366"></i> https://chat.whatsapp.com/CWN5iwoEXTZB89Zw2w6EWs
+
 ### Leipzig
 
 <i class="fab fa-telegram" style="color: #24A1DE"></i> https://t.me/+dv3dNClNbYczMDMy
