@@ -13,17 +13,9 @@ Pour échanger vos billets de festival :
 
 ## 🇫🇷 France 
 
-### Paris
-
-<i class="fab fa-whatsapp" style="color: #25D366"></i> https://chat.whatsapp.com/JokW7aNKEvtGKK8l76eW5A
-
 ### Lyon 
 
 <i class="fab fa-signal-messenger" style="color: #3A76F0"></i> https://signal.group/#CjQKIHGM47Sie95j2aBUq216Aotuk7r4PV3wavjQQFyDAiv3EhA3cIDmJgAIwiYITbr-dUj0
-
-### Strasbourg
-
-<i class="fab fa-signal-messenger" style="color: #3A76F0"></i> [https://signal.group/#CjQKIGXkFWEmgPkX3TmibvjdV-UgtDXZajRkwjWnF19AJxY0EhBYWmbHZt421KVe1ADWHxG_](https://signal.group/#CjQKIGXkFWEmgPkX3TmibvjdV-UgtDXZajRkwjWnF19AJxY0EhBYWmbHZt421KVe1ADWHxG_)
 
 ### Marseille
 
@@ -33,17 +25,68 @@ Pour échanger vos billets de festival :
 
 <i class="fab fa-whatsapp" style="color: #25D366"></i> https://chat.whatsapp.com/J89hbQ6HZGgFTvRlQDuOSW
 
+### Nice
+
+<i class="fab fa-whatsapp" style="color: #25D366"></i> https://chat.whatsapp.com/JMoF8hI6xdv1s4YAGeUqF9?mode=ems_wa_c
+
+### Paris
+
+<i class="fab fa-whatsapp" style="color: #25D366"></i> https://chat.whatsapp.com/JokW7aNKEvtGKK8l76eW5A
+
+### Strasbourg
+
+<i class="fab fa-signal-messenger" style="color: #3A76F0"></i>Announces: [https://signal.group/#CjQKIGXkFWEmgPkX3TmibvjdV-UgtDXZajRkwjWnF19AJxY0EhBYWmbHZt421KVe1ADWHxG_](https://signal.group/#CjQKIGXkFWEmgPkX3TmibvjdV-UgtDXZajRkwjWnF19AJxY0EhBYWmbHZt421KVe1ADWHxG_)
+<i class="fab fa-signal-messenger" style="color: #3A76F0"></i>Communauté: [https://signal.group/#CjQKIIW7zVhDn32M1nru-x6nIfTNKBUtI5ckblOKgXWtocoJEhBwOh6-_Cu74HBVyMmXY8hZ](https://signal.group/#CjQKIIW7zVhDn32M1nru-x6nIfTNKBUtI5ckblOKgXWtocoJEhBwOh6-_Cu74HBVyMmXY8hZ)
+
+### Toulouse
+
+<i class="fab fa-telegram" style="color: #24A1DE"></i> https://t.me/+WQmR3SjBWmA3MzM8
+
 ## 🇩🇪 Allemagne
 
-### Fribourg
+### Berlin
 
-<i class="fab fa-telegram" style="color: #24A1DE"></i> https://t.me/Forrozin
+<i class="fab fa-telegram" style="color: #24A1DE"></i> https://t.me/+J8q5Ymd2v3E5Zjhi
+
+### Bonn
+
+<i class="fab fa-whatsapp" style="color: #25D366"></i> https://chat.whatsapp.com/DjKCPVZSQEC18r6A7Yg0MW
+
+<i class="fab fa-telegram" style="color: #24A1DE"></i> https://chat.whatsapp.com/KzgzXNqZ0HL1LTOIoGtYqB
 
 ### Dresden
 
 <i class="fab fa-whatsapp" style="color: #25D366"></i> https://tr.ee/eOwGAeLl9b
 
 <i class="fab fa-telegram" style="color: #24A1DE"></i> http://t.me/forroconnects
+
+### Düsseldorf
+
+<i class="fab fa-whatsapp" style="color: #25D366"></i>  https://chat.whatsapp.com/LAF5NCK1Go2JVmsnHiVBTO
+
+### Fribourg
+
+<i class="fab fa-signal-messenger" style="color: #3A76F0"></i> https://signal.group/#CjQKIOAchpOVaA9h4CgIjV5ie2hdA9wwj6n5LvYBTamQo2RxEhAvU8-oFDEoDUnOlIExO-MD
+
+<i class="fab fa-telegram" style="color: #24A1DE"></i> https://t.me/Forrozin
+
+
+### Hamburg
+
+<i class="fab fa-whatsapp" style="color: #25D366"></i> https://chat.whatsapp.com/G5TerpO4N7jE8ZGvAdX89q
+
+### Hannover
+
+<i class="fab fa-whatsapp" style="color: #25D366"></i> https://chat.whatsapp.com/DWKpZxDXGKL22q3UGtWHNk
+
+### Leipzig
+
+<i class="fab fa-telegram" style="color: #24A1DE"></i> https://t.me/+dv3dNClNbYczMDMy
+
+### München
+
+<i class="fab fa-signal-messenger" style="color: #3A76F0"></i> https://signal.group/#CjQKIOpykeQb5pK88Lf7zUO-Vx7Mm02HXrHgJ-KQINavjBopEhCQybolLZ6V9vd_gHrseExM
+
 
 ## 🏴󠁧󠁢󠁥󠁮󠁧󠁿 Angleterre 
 
@@ -73,6 +116,27 @@ Pour échanger vos billets de festival :
 
 <i class="fab fa-whatsapp" style="color: #25D366"></i> https://chat.whatsapp.com/HUT7By1QS4410urZ12WDne
 
+### Málaga
+
+<i class="fab fa-whatsapp" style="color: #25D366"></i> https://chat.whatsapp.com/LVat51iUohWHQfYCQpWduR
+
+## 🇫🇮 Finlande
+
+### Helsinki
+
+<i class="fab fa-whatsapp" style="color: #25D366"></i> https://chat.whatsapp.com/HwVO05tccLpKpWYkl93lAr
+
+## 🇭🇺 Hongrie 
+
+### Budapest
+
+<i class="fab fa-whatsapp" style="color: #25D366"></i> https://chat.whatsapp.com/LGvW9YuqftA1PkoCxPYatW
+
+## 🇮🇹 Italie 
+
+### Roma
+
+<i class="fab fa-telegram" style="color: #24A1DE"></i> https://t.me/RomaRootsMarathon
 
 ## 🇳🇱 Pays-Bas 
 
@@ -95,6 +159,8 @@ Pour échanger vos billets de festival :
 
 4️⃣ <i class="fab fa-whatsapp" style="color: #25D366"></i> https://chat.whatsapp.com/LPsbGUf21i859PraTBjfRu
 
+5️⃣ <i class="fab fa-telegram" style="color: #24A1DE"></i> https://t.me/+SOn-RjZsMK03MmI0
+
 ## 🇨🇭 Suisse 
 
 ### Basel
@@ -112,5 +178,7 @@ Pour échanger vos billets de festival :
 <i class="fab fa-whatsapp" style="color: #25D366"></i> https://chat.whatsapp.com/IQdfIPelRKGE4bU7lfRPxy
 
 ### Zürich
+
+https://www.elsocial.ch/forro
 
 <i class="fab fa-whatsapp" style="color: #25D366"></i> https://chat.whatsapp.com/FjrrtLbp5AmII04FaQWUny
