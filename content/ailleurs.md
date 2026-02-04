@@ -36,6 +36,7 @@ Pour échanger vos billets de festival :
 ### Strasbourg
 
 <i class="fab fa-signal-messenger" style="color: #3A76F0"></i>Announces: [https://signal.group/#CjQKIGXkFWEmgPkX3TmibvjdV-UgtDXZajRkwjWnF19AJxY0EhBYWmbHZt421KVe1ADWHxG_](https://signal.group/#CjQKIGXkFWEmgPkX3TmibvjdV-UgtDXZajRkwjWnF19AJxY0EhBYWmbHZt421KVe1ADWHxG_)
+
 <i class="fab fa-signal-messenger" style="color: #3A76F0"></i>Communauté: [https://signal.group/#CjQKIIW7zVhDn32M1nru-x6nIfTNKBUtI5ckblOKgXWtocoJEhBwOh6-_Cu74HBVyMmXY8hZ](https://signal.group/#CjQKIIW7zVhDn32M1nru-x6nIfTNKBUtI5ckblOKgXWtocoJEhBwOh6-_Cu74HBVyMmXY8hZ)
 
 ### Toulouse
