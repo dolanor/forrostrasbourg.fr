@@ -49,3 +49,7 @@ menu:
     - name      : "Ailleurs"
       url       : "/ailleurs"
       weight    : 4
+
+    - name      : "Playlists"
+      url       : "/playlists"
+      weight    : 5
