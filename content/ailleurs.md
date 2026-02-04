@@ -8,6 +8,8 @@ Une petite liste des différents groupes WhatsApp (<i class="fab fa-whatsapp" st
 
 Cette liste a été démarrée à l'initiative de Jerem du groupe WhatsApp de Paris. Merci à lui !
 
+Si vous voulez rajouter votre groupe, n'hésitez pas à me contacter pour que je mette la liste à jour : [@Tanguy](https://signal.me/#eu/l281ZEaHDqPqollVl_IGYoYB1IUYzjRRrHiMKHErg0mtMGVivNBBsaSUfmwH0f6T)
+
 Pour échanger vos billets de festival :
 <i class="fab fa-telegram" style="color: #24A1DE"></i> https://t.me/+iSVWYjFuGkIwMmQy
 
