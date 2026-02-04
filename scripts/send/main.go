@@ -38,7 +38,7 @@ func main() {
 		panic(err)
 	}
 
-	err = run(cfg.beeperAccessToken, cfg.chatID)
+	err = run(cfg.beeperAccessToken, cfg.chatIDs)
 	if err != nil {
 		panic(err)
 	}
@@ -46,7 +46,7 @@ func main() {
 
 type config struct {
 	beeperAccessToken string
-	chatID            string
+	chatIDs           []string
 }
 
 func loadConfig() (config, error) {
@@ -63,9 +63,22 @@ func loadConfig() (config, error) {
 		return cfg, errors.New("BEEPER_ACCESS_TOKEN not set in env")
 	}
 
-	cfg.chatID, ok = os.LookupEnv("FORROSTRASBOURG_CHAT_GROUP_ID")
+	chatID, ok := os.LookupEnv("FORROSTRASBOURG_CHAT_GROUP_ID")
 	if !ok {
 		return cfg, errors.New("FORROSTRASBOURG_CHAT_GROUP_ID not set in env")
+	}
+
+	if chatID != "" {
+		cfg.chatIDs = append(cfg.chatIDs, chatID)
+	}
+
+	chatID, ok = os.LookupEnv("SPECIAL_CHAT_GROUP_ID")
+	if !ok {
+		return cfg, errors.New("SPECIAL_CHAT_GROUP_ID not set in env")
+	}
+
+	if chatID != "" {
+		cfg.chatIDs = append(cfg.chatIDs, chatID)
 	}
 
 	return cfg, nil
@@ -80,7 +93,9 @@ type event struct {
 	URL        *url.URL
 }
 
-func run(beeperAccessToken string, chatID string) error {
+func run(beeperAccessToken string, chatIDs []string) error {
+	slog.Info("run", "chat_ids", chatIDs)
+
 	currentYear, currentWeek := time.Now().Add(24 * time.Hour).UTC().ISOWeek()
 	md := goldmark.New(
 		goldmark.WithExtensions(
@@ -165,9 +180,12 @@ func run(beeperAccessToken string, chatID string) error {
 		slog.Info("not sending")
 		return nil
 	}
-	err = sendToGroup(beeperAccessToken, chatID, message)
-	if err != nil {
-		return err
+
+	for _, chatID := range chatIDs {
+		err = sendToGroup(beeperAccessToken, chatID, message)
+		if err != nil {
+			return err
+		}
 	}
 	fmt.Println("MESSAGE SENT")
 
