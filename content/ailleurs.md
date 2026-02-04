@@ -13,6 +13,10 @@ Pour échanger vos billets de festival :
 
 ## 🇫🇷 France 
 
+### Bordeaux
+
+<i class="fab fa-whatsapp" style="color: #25D366"></i> https://chat.whatsapp.com/FlMJTahz1WF972D59V7qgZ
+
 ### Lyon 
 
 <i class="fab fa-signal-messenger" style="color: #3A76F0"></i> https://signal.group/#CjQKIHGM47Sie95j2aBUq216Aotuk7r4PV3wavjQQFyDAiv3EhA3cIDmJgAIwiYITbr-dUj0
@@ -101,6 +105,12 @@ Pour échanger vos billets de festival :
 
 <i class="fab fa-whatsapp" style="color: #25D366"></i> https://chat.whatsapp.com/CtxxFOc1jeSKbu1M5NZ3r4
 
+## 🇧🇷 Brésil
+
+### Rio
+
+https://www.instagram.com/forronorio?igsh=ZXE4YWh0bmJ6c292
+
 ## 🏴󠁧󠁢󠁳󠁣󠁴󠁿 Ecosse 
 
 ### Edinburgh 
@@ -126,6 +136,12 @@ Pour échanger vos billets de festival :
 ### Helsinki
 
 <i class="fab fa-whatsapp" style="color: #25D366"></i> https://chat.whatsapp.com/HwVO05tccLpKpWYkl93lAr
+
+## 🇬🇷 Grèce
+
+### Athènes
+
+https://www.instagram.com/forroatenas?igsh=Y2toNWt0YTJiaDgy
 
 ## 🇭🇺 Hongrie 
 
