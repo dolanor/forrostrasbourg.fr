@@ -27,6 +27,6 @@ Sinon, il y a de quoi manger aux alentours, et notamment, notre bar régulier de
 la Kulture.  
 
 📌 Quai des Bateliers en face de Librairie Le Tigre  
-:clock5: 17:00 Début du bal  
-:clock7: 19:00 Initiation / pas intermédiaire  
+🕔 17:00 Début du bal  
+🕖 19:00 Initiation / pas intermédiaire  
 🕙 ~22:00 Fin du bal
