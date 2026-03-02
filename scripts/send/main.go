@@ -26,7 +26,7 @@ const messageTempl = `Bonjour à toutes et tous,
 
 Pour cette semaine, on a :
 {{ range . }}
-- Le {{ .WeekDay }} {{ .StartDay }}/{{ .StartMonth}} à {{ .StartHour }}, {{ .Title }} : {{ .URL -}}
+- Le {{ .WeekDay }} {{ .StartDay | zeroPrefix }}/{{ .StartMonth | zeroPrefix }} à {{ .StartHour }}, {{ .Title }} : {{ .URL -}}
 {{ end }}
 
 Au plaisir de vous y voir
@@ -162,7 +162,13 @@ func run(beeperAccessToken string, chatIDs []string) error {
 
 	fmt.Println("EVENTS:\n", events)
 
-	t, err := template.New("message").Parse(messageTempl)
+	fm := template.FuncMap{
+		"zeroPrefix": func(digit any) string {
+			zeroPrefixed := fmt.Sprintf("%02d", digit)
+			return zeroPrefixed
+		},
+	}
+	t, err := template.New("message").Funcs(fm).Parse(messageTempl)
 	if err != nil {
 		return err
 	}
