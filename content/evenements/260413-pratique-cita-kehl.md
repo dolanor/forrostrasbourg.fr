@@ -7,7 +7,7 @@ city: Kehl
 price: gratuit (pour élèves), 2€ sinon
 description: "Pratique Forró à La Cita Kehl 💃🇧🇷🕺 △ 🪗 🥁 "
 social_media:
-  facebook: 
+  facebook: https://www.facebook.com/share/p/1CkE77fZej/
 
 facebook_site: "61562489966778"
 facebook_author: "manoel.m.junior.12"
