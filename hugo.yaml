@@ -53,3 +53,7 @@ menu:
     - name      : "Playlists"
       url       : "/playlists"
       weight    : 5
+
+    - name      : "Contact"
+      url       : "/contact"
+      weight    : 6

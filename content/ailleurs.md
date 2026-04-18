@@ -45,6 +45,8 @@ Pour échanger vos billets de festival :
 
 <i class="fab fa-signal-messenger" style="color: #3A76F0"></i>Communauté: [https://signal.group/#CjQKIIW7zVhDn32M1nru-x6nIfTNKBUtI5ckblOKgXWtocoJEhBwOh6-_Cu74HBVyMmXY8hZ](https://signal.group/#CjQKIIW7zVhDn32M1nru-x6nIfTNKBUtI5ckblOKgXWtocoJEhBwOh6-_Cu74HBVyMmXY8hZ)
 
+(⚠️ : Nous ne sommes pas sur WhatsApp)
+
 ### Toulouse
 
 <i class="fab fa-telegram" style="color: #24A1DE"></i> https://t.me/+WQmR3SjBWmA3MzM8
