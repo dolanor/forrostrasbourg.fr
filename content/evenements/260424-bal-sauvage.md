@@ -1,6 +1,6 @@
 ---
 title: "Forró initiation et bal sauvage 💃🇧🇷🕺"
-startDate: "2026-04-24T18:30:00+02:00"
+startDate: "2026-04-24T17:00:00+02:00"
 endDate:   "2026-04-24T22:00:00+02:00"
 place: 36 quai des bateliers
 city: Strasbourg
@@ -26,6 +26,6 @@ Sinon, il y a un kebab en face et le Bio Burger.
 🌦️ La météo peut être pluvieuse. J'annoncerai sur le groupe signal si on bouge d'endroit pour être à l'abri ou si on doit annuler à 18h si la météo n'est pas clémente.
 
 📌 Quai des Bateliers en face de Librairie Le Tigre  
-🕖 18:30 Début du bal  
-🕢 19:00 Initiation  
+🕖 17:00 Début du bal  
+🕢 18:00 Initiation  
 🕙 ~22:00 Fin du bal
