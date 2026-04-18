@@ -191,7 +191,7 @@ func run(beeperAccessToken string, chatIDs []string, forWeek int, send bool) err
 	}
 
 	message := buf.String()
-	fmt.Println("MESSAGE:\n", message)
+	fmt.Printf("MESSAGE:\n%s", message)
 
 	if !send {
 		slog.Info("not sending")
