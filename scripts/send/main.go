@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"encoding/json"
 	"errors"
+	"flag"
 	"fmt"
 	"io"
 	"io/fs"
@@ -38,7 +39,7 @@ func main() {
 		panic(err)
 	}
 
-	err = run(cfg.beeperAccessToken, cfg.chatIDs)
+	err = run(cfg.beeperAccessToken, cfg.chatIDs, cfg.forWeek, cfg.send)
 	if err != nil {
 		panic(err)
 	}
@@ -47,6 +48,8 @@ func main() {
 type config struct {
 	beeperAccessToken string
 	chatIDs           []string
+	send              bool
+	forWeek           int
 }
 
 func loadConfig() (config, error) {
@@ -55,6 +58,11 @@ func loadConfig() (config, error) {
 	if err != nil {
 		return cfg, err
 	}
+
+	flag.BoolVar(&cfg.send, "send", false, "to actually send the message")
+	flag.IntVar(&cfg.forWeek, "for-week", 0, "to change the week this message is for (it's the number of the week of the current year)")
+
+	flag.Parse()
 
 	var ok bool
 
@@ -93,10 +101,13 @@ type event struct {
 	URL        *url.URL
 }
 
-func run(beeperAccessToken string, chatIDs []string) error {
+func run(beeperAccessToken string, chatIDs []string, forWeek int, send bool) error {
 	slog.Info("run", "chat_ids", chatIDs)
 
 	currentYear, currentWeek := time.Now().Add(24 * time.Hour).UTC().ISOWeek()
+	if forWeek != 0 {
+		currentWeek = forWeek
+	}
 	md := goldmark.New(
 		goldmark.WithExtensions(
 			&frontmatter.Extender{},
@@ -182,7 +193,7 @@ func run(beeperAccessToken string, chatIDs []string) error {
 	message := buf.String()
 	fmt.Println("MESSAGE:\n", message)
 
-	if len(os.Args) < 2 || os.Args[1] != "-send" {
+	if !send {
 		slog.Info("not sending")
 		return nil
 	}
