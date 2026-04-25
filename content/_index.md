@@ -2,28 +2,16 @@
 title: Forró Strasbourg
 ---
 
-TL;DR : [Notre groupe signal où on publie nos événements](https://signal.group/#CjQKIGXkFWEmgPkX3TmibvjdV-UgtDXZajRkwjWnF19AJxY0EhBYWmbHZt421KVe1ADWHxG_)  
-[Les évènements](/evenements)  
-[Le Forró](/forro)  
+# À propos de nous
 
-Forró Strasbourg a pour but de faire découvrir cette musique et cette danse du Brésil.
+Forró Strasbourg est une communauté interculturelle de passionné·es par le Forró et la culture brésilienne rassemblant aussi bien des débutant·es que des danseureuses plus expérimenté·es. Après deux ans à fonctionner en tant que collectif, nous avons créé l’association Forró Strasbourg en 2026 dans le but de faire découvrir cette musique et cette danse populaire originaire du Nord-est du Brésil. Nous sommes toujours ravi·es d'accueillir de nouvelles personnes lors de nos événements hebdomadaires du mardi, et nous organisons aussi des événements ponctuels, à retrouver à la page événements.
 
-On organise des bals en plein air de manière régulière pendant l'été et espérons avoir des salles pour l'année scolaire.
-
-# Pourquoi le Forró ?
-
-J'ai (Tanguy) découvert le forró lorsque je vivais à Paris et dansais d'autres danses sur les quais de Seine.  
-Des personnes m'ont guidé vers des soirées et j'ai tout de suite adoré l'ambiance, l'énérgie et la musique.
-
-Le Forró se dansait tous les soirs de la semaine à Paris à l'époque dans différents lieux, mais je ne connaissais pas. J'ai donc voulu partager cette danse avec le plus de monde possible et avec des amis que j'ai rencontré j'ai créé Forró en Seine pour rajouter le forró sur les quais de Seine. Cela a pris du temps, mais au final on a réussi et on amenait plusieurs centaines de danseurs sur les quais près de Jussieu.
-
-Rencontrant beaucoup de danseurs sur Strasbourg ne connaissant pas cette danse, je souhaite la faire découvrir également au détour d'une promenade.
-
-J'ai partagé quelques de mes connaissances dans cette [rubrique Forró](/forro)
+En tant que communauté de danse, nos valeurs sont basées sur le respect, le consentement, la tolérance et la bienveillance envers les autres et nous refusons toute sorte de discrimination. Les rôles (leader/follower) ne sont pas genrés.
 
 # Comment nous trouver
 
-Nos évènements sont publié sur ce site : [évènements](/evenements)  
+Nos évènements sont publiés sur ce site : [évènements](/evenements)  
 On publie principalement les infos sur [Signal](https://signal.org) dans ce [groupe](https://signal.group/#CjQKIGXkFWEmgPkX3TmibvjdV-UgtDXZajRkwjWnF19AJxY0EhBYWmbHZt421KVe1ADWHxG_)
 
-Vous pouvez également me contacter (Tanguy) au [+336 51 08 06 36](tel:+33651080636)
+Vous pouvez également nous contacter par mail : [contact@forrostrasbourg.fr](mailto:contact@forrostrasbourg.fr)
+
