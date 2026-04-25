@@ -1,0 +1,15 @@
+content:
+  - name: evenements
+    label: Posts
+    type: collection
+    path: content/evenements
+    fields:
+      - name: title
+        type: string
+      - name: body
+        type: rich-text
+
+actions:
+  - name: deploy-site
+    label: Deploy site
+    workflow: hugo.yaml
