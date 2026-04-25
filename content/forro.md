@@ -1,6 +1,10 @@
+---
+title: Le Forró
+---
 # Le Forró
 
 Le Forró est un style musical du Nord-Est du Brésil, joué en général avec 3 instruments :
+
 - l'accordéon (sanfona)
 - le zabumba : sorte de tambour avec 2 baguettes. 1 pour des percussions graves, et une plus fine pour des percussions plus sèches.
 - le triangle (triangulo)
@@ -27,6 +31,6 @@ Le forró est lui même un mix de plusieurs rythmes. Les différences peuvent ê
 - Xaxado : un rythme beaucoup plus rapide qui lance des danses effrénées.
 - Arrasta pé : un rythme tellement rapide que les pas ne sont plus les mêmes que pour les autres rythmes.
 
-### Dominguinhos démontrant la différences des rythmes 
+### Dominguinhos démontrant la différences des rythmes
 
 {{< youtube id="L77DyWPLHj0" class="youtube-embed" >}}
