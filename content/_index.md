@@ -1,7 +1,6 @@
 ---
-title: Forró Strasbourg
+title: Forró Strasbourg - À Propos
 ---
-
 # À propos de nous
 
 Forró Strasbourg est une communauté interculturelle de passionné·es par le Forró et la culture brésilienne rassemblant aussi bien des débutant·es que des danseureuses plus expérimenté·es. Après deux ans à fonctionner en tant que collectif, nous avons créé l’association Forró Strasbourg en 2026 dans le but de faire découvrir cette musique et cette danse populaire originaire du Nord-est du Brésil. Nous sommes toujours ravi·es d'accueillir de nouvelles personnes lors de nos événements hebdomadaires du mardi, et nous organisons aussi des événements ponctuels, à retrouver à la page événements.
