@@ -9,7 +9,7 @@ En tant que communauté de danse, nos valeurs sont basées sur le respect, le co
 
 # Comment nous trouver
 
-Nos évènements sont publiés sur ce site : [évènements](/evenements)  
+Nos évènements sont publiés sur ce site : [événements](/evenements)  
 On publie principalement les infos sur [Signal](https://signal.org) dans ce [groupe](https://signal.group/#CjQKIGXkFWEmgPkX3TmibvjdV-UgtDXZajRkwjWnF19AJxY0EhBYWmbHZt421KVe1ADWHxG_)
 
 Vous pouvez également nous contacter par mail : [contact@forrostrasbourg.fr](mailto:contact@forrostrasbourg.fr)
