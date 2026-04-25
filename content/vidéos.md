@@ -1,5 +1,5 @@
 ---
-title: Vidéos
+title: Forró Strasbourg - Vidéos
 ---
 # Vidéos
 
