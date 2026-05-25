@@ -5,7 +5,7 @@ endDate:   "2026-05-26T22:00:00+02:00"
 place: Parc du Heyritz
 city: Strasbourg
 price: gratuit
-banner: "/evenements/banners/quai-bateliers.jpeg"
+banner: "/evenements/banners/heyritz-map.jpeg"
 social_media:
   facebook: 
 ---
