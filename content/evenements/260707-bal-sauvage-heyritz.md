@@ -18,13 +18,12 @@ Olá, forrozeir@s!
 Pour profiter de ce temps estival, on vous propose pour mardi soir (19h-22h~) un picnic-forró au Parc du Heyritz !
 L'idée est simple : on se retrouve autour d'un apéro en mode auberge espagnole pour papoter, grignoter et bien sûr danser le forró 🪗🥁🎶
 
-💃 Ouvert à tous.tes, adapté à tous les niveaux
-Une initiation est proposée en début de soirée pour permettre aux personnes n'ayant jamais dansé de s'amuser sur la piste pendant le bal.
+💃 Ouvert à tous·tes
+Une initiation est proposée si besoin pour permettre aux personnes n'ayant jamais dansé de s'amuser sur la piste pendant le bal
 🕺 Pas besoin de partenaire : venez seul.e ou avec des ami.e.s
 
 📅 Programme : 
-- 19h-20h : initiation au forró
-- 20h-22h~ : bal
+- 19h-22h~ : bal (initiation individuelle si besoin)
 
 📍Lieu : Parc du Heyritz, près du Rowing Club Strasbourg et de la Passerelle René Burgun
 
@@ -32,7 +31,7 @@ Une initiation est proposée en début de soirée pour permettre aux personnes n
 
 💶 Événement gratuit
 
-👥 À propos de nous : Forró Strasbourg est une communauté interculturelle de passionné.e.s par le Forró et la culture brésilienne rassemblant aussi bien des débutant.e.s que des danseureuses plus expérimenté.e.s. Nous sommes toujours ravi.e.s d'accueillir de nouvelles personnes ayant envie de découvrir cette danse populaire originaire du Nord-est du Brésil. Nos valeurs sont basées sur le respect, le consentement, la tolérance et la bienveillance envers les autres et nous refusons toute sorte de discrimination. Les rôles (leader/follower) ne sont pas genrés.
+👥 À propos de nous : Forró Strasbourg est une communauté interculturelle de passionné·es par le Forró et la culture brésilienne rassemblant aussi bien des débutant·es que des danseureuses plus expérimenté·es. Nous sommes toujours ravi·es d'accueillir de nouvelles personnes ayant envie de découvrir cette danse populaire originaire du Nord-est du Brésil. Nos valeurs sont basées sur le respect, le consentement, la tolérance et la bienveillance envers les autres et nous refusons toute sorte de discrimination. Les rôles (leader/follower) ne sont pas genrés.
 
 Venez découvrir avec nous le Forró dans une ambiance chaleureuse et conviviale ! À mardi :)
 
@@ -42,12 +41,11 @@ Venez découvrir avec nous le Forró dans une ambiance chaleureuse et conviviale
 To enjoy this summer weather, we're organizing on Tuesday evening (7pm-10pm~) a forró-picnic at Heyritz Park! The idea is simple: we'll get together for a potluck-style happy hour to chat, snack and, of course, dance forró 🪗🥁🎶
 
 💃🏽Open to all, regardless of dancing ability 
-The evening starts with a taster class so that people who have never danced before can have fun on the dance floor. 
+We will start with a taster class if needed
 🕺No need to come with a dance partner – come alone or with your friends
 
 📅 Schedule:
-- 7pm-8pm: taster
-- 8pm-10pm~: social dancing
+- 7pm-10pm~: social dancing
 
 📍 Where: Parc du Heyritz, near the Rowing Club Strasbourg and the Passerelle René Burgun
 
@@ -65,12 +63,11 @@ Come discover Forró with us in a fun and welcoming atmosphere! See you then :)
 Para aproveitar este clima de verão, estamos organizando na próxima terça à noite (19h-22h~) um piquenique-forró no Parque do Heyritz! A ideia é simples: nos reunimos em torno de um aperitivo para bater papo, beliscar e, é claro, dançar forró 🪗🥁🎶
 
 💃 Aberto a tod@s, adaptado a todos os níveis
-Nós oferecemos uma aula introdutória no início da noite para as pessoas que nunca dançaram poderem se divertir na pista durante a festa
+Nós oferecemos se necessário uma aula introdutória no início da noite 
 🕺 Não precisa de parceir@: venha sozinh@ ou com amig@s
 
 📅 Programação: 
-- 19h-20h: introdução ao forró
-- 20h-22h~: dança livre
+- 19h-22h~: dança livre
 
 📍 Local: Parc du Heyritz, perto do Rowing Club Strasbourg e da Passerelle René Burgun
 
