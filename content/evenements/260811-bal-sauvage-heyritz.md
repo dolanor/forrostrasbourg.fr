@@ -1,7 +1,7 @@
 ---
 title: "Picnic Forró au parc du Heyritz 💃🇧🇷🕺"
-startDate: "2026-08-04T20:00:00+02:00"
-endDate:   "2026-08-04T22:00:00+02:00"
+startDate: "2026-08-11T20:00:00+02:00"
+endDate:   "2026-08-11T22:00:00+02:00"
 place: Parc du Heyritz
 city: Strasbourg
 price: gratuit
