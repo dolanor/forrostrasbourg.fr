@@ -36,7 +36,7 @@ Pour échanger vos billets de festival :
 
 ### Paris
 
- [https://chat.whatsapp.com/JokW7aNKEvtGKK8l76eW5A](https://chat.whatsapp.com/JokW7aNKEvtGKK8l76eW5A)
+ [https://https://chat.whatsapp.com/EP3EQCwRDsSBsRLu64ulhj](https://chat.whatsapp.com/EP3EQCwRDsSBsRLu64ulhj)
 
 ### Strasbourg
 
