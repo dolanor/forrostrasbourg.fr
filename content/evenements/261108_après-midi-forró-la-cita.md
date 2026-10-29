@@ -1,8 +1,8 @@
 ---
-title: "Soirée brésilienne 💃🇧🇷🕺"
+title: "Après-Midi Forró - Lancement officiel de l'asso 💃🇧🇷🕺"
 startDate: "2026-11-08T13:00:00+02:00"
 endDate:   "2026-11-08T17:00:00+02:00"
-place: La Cita
+place: La Cita, Kinzigsstraße 35
 city: Kehl
 price: Pré-vente 10€ - Adhérents 8€ (12€ sur place)
 banner: "/evenements/banners/apres-midi-forro-la-cita.png"
