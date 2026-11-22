@@ -1,0 +1,70 @@
+---
+title: "Bal Forró 💃🇧🇷🕺"
+description: "Bal Forró 💃🇧🇷🕺"
+startDate: "2026-11-26T19:00:00+02:00"
+endDate:   "2026-11-26T21:30:00+02:00"
+place: 5 rue de la coopérative
+city: Strasbourg
+price: gratuit (participation libre au chapeau)
+banner: "/evenements/banners/kaleidoscoop-bresil-2.png"
+social_media:
+  
+---
+
+C'est jeudi prochain !
+It's next Thursday!
+É na próxima quinta-feira! 
+
+--
+
+Olá, forrozeir@s!
+
+[english below]
+[português abaixo]
+
+On reprend les évènements réguliers ! Venez nous retrouver jeudi 19h à 21h30 à l’espace coworking du Kaléidoscoop pour danser le forró 🪗🥁🎶
+
+💃 Ouvert à tous.tes, adapté à tous les niveaux
+🕺 Pas besoin de partenaire : venez seul.e ou avec des ami.e.s
+
+💶 Entrée gratuite - participation libre au chapeau.
+
+🍹Boissons et nourriture au Bistrot Dékalé. Pensez à consommer pour soutenir le partenariat avec le Kaléidoscoop 😉
+
+📍Lieu : Espace Coworking - Kaléidoscoop – 5 rue des Bateliers, Strasbourg
+
+👥 À propos de nous : Forró Strasbourg est une association interculturelle créée par des personnes passionné.e.s par le Forró et la culture brésilienne rassemblant aussi bien des débutant.e.s que des danseureuses plus expérimenté.e.s. Nous sommes toujours ravi.e.s d'accueillir de nouvelles personnes ayant envie de découvrir cette danse populaire originaire du Nord-est du Brésil. Nos valeurs sont basées sur le respect, le consentement, la tolérance et la bienveillance envers les autres et nous refusons toute sorte de discrimination. Les rôles (leader/follower) ne sont pas genrés.
+
+Venez découvrir avec nous le Forró dans une ambiance chaleureuse et conviviale ! À très vite :)
+
+
+--------------
+
+We are back with regular events! Come join us on Thursday, from 7pm to 9.30pm at Espace Corworking, Kaléidoscoop to dance forró 🪗🥁🎶
+
+💶 Free event – Pay what you want.
+
+🍹Food and drinks are available at Bistrot Dékalé downstairs. Please support the event by ordering from the bar 😉
+
+📍 Where: Espace Coworking - Kaléidoscoop – 5 rue des Bateliers, Strasbourg
+
+👥 About us: Forró Strasbourg is a multicultural organization created by people who are passionate about Forró and Brazilian culture. Our community includes dancers with a range of experience, from beginner to more advanced. We warmly welcome anyone who wants to discover this popular dance originating from the North-East of Brazil. We value respect, consent, tolerance and inclusion, and we do not accept any form of discrimination. Dancing roles (leader/follower) are not tied to gender. 
+
+Come discover Forró with us in a fun and welcoming atmosphere! See you then :)
+
+
+--------------
+
+Nossos eventos regulares estão de volta! Venha dançar forró com a gente na quinta-feira, das 19h às 21h30, no Espace Coworking, Kaléidoscoop! 🪗🥁🎶
+
+💶 Evento gratuito – Contribua com o valor que quiser.
+
+🍹 Comidas e bebidas disponíveis no Bistrot Dékalé, no andar de baixo. Por favor, apoiem o evento consumindo no bar 😉
+
+📍 Onde: Espace Coworking – Kaléidoscoop – 5 rue des Bateliers, Estrasburgo.
+
+👥 Sobre nós: Forró Strasbourg é uma associação criada por pessoas apaixonadas pelo forró e pela cultura brasileira. Na nossa comunidade, há espaço para todos os níveis de experiência na dança, desde quem está começando até quem já tem mais experiência.
+Todas as pessoas interessadas em conhecer essa dança tão popular, originária do Nordeste do Brasil, são muito bem-vindas.
+Valorizamos o respeito, o consentimento, a tolerância e a inclusão, e não aceitamos nenhuma forma de discriminação. Os papéis de conduzir e de receber a condução na dança não estão associados ao gênero.
+
+Venha descobrir o forró com a gente, em um ambiente descontraído e acolhedor! Até lá! :)
